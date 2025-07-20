@@ -80,4 +80,4 @@
 ・Remember me(自動ログイン)
 ・Geocoder(Google連携)
 
-[![Image from Gyazo](https://i.gyazo.com/50526e45389fc21fe28d27a0448212f2.png)](https://gyazo.com/50526e45389fc21fe28d27a0448212f2)
+[![Image from Gyazo](https://i.gyazo.com/a5484312c1d6b991c9c9c2d21282ce0e.png)](https://gyazo.com/a5484312c1d6b991c9c9c2d21282ce0e)
