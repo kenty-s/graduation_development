@@ -79,3 +79,5 @@
 <%= link_to 'Twitter', "https://twitter.com/share?url=#{request.url}", title: 'X', target: '_blank' %>
 ・Remember me(自動ログイン)
 ・Geocoder(Google連携)
+
+[![Image from Gyazo](https://i.gyazo.com/b5fe12ea3a66053416873301d11e1d32.png)](https://gyazo.com/b5fe12ea3a66053416873301d11e1d32)
