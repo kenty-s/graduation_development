@@ -71,9 +71,8 @@
 * `rails new myapp -d mysql`で基本的なRailsアプリ作成
 * MySQL: 8.0.42
 * ruby 3.2.3
-* `gem "rails", "~> 8.0.2"` - Rails 8.0.2
+* `gem 'rails', '7.0.3.1'`
 * `gem "ransack"`　- 検索機能　⇒　１品だけ表示する場合、ランダム出力の必要があり
-* `gem 'sorcery', '0.16.3'`- ログイン
 * `gem 'bootstrap', '~> 5.3'` - UI作成
 * `gem 'sassc-rails'` - UI作成
 * `gem 'rails-i18n', '~> 7.0.0'` - 日本語翻訳(Railsのi18nのデフォルト設定を :ja )
