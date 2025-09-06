@@ -103,7 +103,6 @@ MVP時点では「自宅で作る料理のマンネリ解消」を主目的と�
 ## 機能の実装方針予定
 
 ### 本リリース（MVP）
-* `rails g scaffold` コマンド生成
 * `rails new myapp -d mysql`で基本的なRailsアプリ作成
 * MySQL: 8.0.42
 * ruby 3.2.3
@@ -117,6 +116,7 @@ MVP時点では「自宅で作る料理のマンネリ解消」を主目的と�
 * `gem 'carrierwave', '2.2.2'` - ファイルアップロード（管理者のみ）
 * `gem 'turbo-rails'` - 高速化・インタラクティブ化
 * タグ付（管理者側で料理名にタグ付与）
+* `rails g scaffold` コマンド生成(CRUD実装)
 
 ### 本リリース以後の拡張機能
 * `gem 'acts-as-taggable-on'` - タグ付（別の方法も検討）
@@ -192,7 +192,7 @@ Figma：https://www.figma.com/board/rKWAuSJmOgPh76h9pCJSRf/%E7%84%A1%E9%A1%8C?no
 - [○] 作り込みはある程度完了している（Figmaを見て画面の作成ができる状態にある）
 
 ### ER図
-[![Image from Gyazo](https://i.gyazo.com/459c6738fe440c152c0f9d04a33c25a5.png)](https://gyazo.com/459c6738fe440c152c0f9d04a33c25a5)
+[![Image from Gyazo](https://i.gyazo.com/75807bf74ffdaa8e241f4ccac353c1d1.png)](https://gyazo.com/75807bf74ffdaa8e241f4ccac353c1d1)
 
 ### 本サービスの概要（700文字以内）
 「食べたい」欲望として、「ガッツリ」「さっぱり」、ジャンル(「中華」「イタリアン」etc)、「弁当にあと1品」など漠然と求めるものはあるけど、
