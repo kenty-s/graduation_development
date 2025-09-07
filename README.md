@@ -194,7 +194,7 @@ Figma：https://www.figma.com/board/rKWAuSJmOgPh76h9pCJSRf/%E7%84%A1%E9%A1%8C?no
 - [○] 作り込みはある程度完了している（Figmaを見て画面の作成ができる状態にある）
 
 ### ER図
-[![Image from Gyazo](https://i.gyazo.com/bfce40fbcf4745a827697b191f2dd95c.png)](https://gyazo.com/bfce40fbcf4745a827697b191f2dd95c)
+[![Image from Gyazo](https://i.gyazo.com/73cd1c4971cead965542cbe7625649e6.png)](https://gyazo.com/73cd1c4971cead965542cbe7625649e6)
 
 ### 本サービスの概要（700文字以内）
 「食べたい」欲望として、「ガッツリ」「さっぱり」、ジャンル(「中華」「イタリアン」etc)、「弁当にあと1品」など漠然と求めるものはあるけど、
