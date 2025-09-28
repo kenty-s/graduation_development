@@ -35,6 +35,15 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev pkg-config && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
+# 開発に必要なパッケージをインストール
+RUN apt-get update -qq && apt-get install -y \
+  build-essential \
+  pkg-config \
+  libssl-dev \
+  libpq-dev \
+  curl \
+  vim
+
 # Install application gems
 COPY Gemfile Gemfile.lock vendor ./
 
