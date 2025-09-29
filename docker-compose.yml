@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: graduation_development_development
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d graduation_development_development -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "apt-get update && apt-get install -y build-essential make && bundle config set --local deployment false && bundle config set --local frozen false && bundle install && rm -f tmp/pids/server.pid && bin/rails server -b 0.0.0.0"
+    tty: true
+    stdin_open: true
+    user: root
+    volumes:
+      - .:/rails
+      - bundle_data:/usr/local/bundle:cached
+      - node_modules:/rails/node_modules
+    environment:
+      TZ: Asia/Tokyo
+      RAILS_ENV: development
+      BUNDLE_DEPLOYMENT: false
+      BUNDLE_WITHOUT: ""
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  bundle_data:
+  postgresql_data:
+  node_modules:

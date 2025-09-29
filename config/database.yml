@@ -1,0 +1,35 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: postgres
+  password: password
+  port: 5432
+  max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: graduation_development_development
+
+test:
+  <<: *default
+  database: graduation_development_test
+
+production:
+  primary: &primary_production
+    <<: *default
+    database: graduation_development_production
+    username: graduation_development
+    password: <%= ENV["GRADUATION_DEVELOPMENT_DATABASE_PASSWORD"] %>
+  cache:
+    <<: *primary_production
+    database: graduation_development_production_cache
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary_production
+    database: graduation_development_production_queue
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary_production
+    database: graduation_development_production_cable
+    migrations_paths: db/cable_migrate
