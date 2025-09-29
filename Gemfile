@@ -17,6 +17,18 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+#検索機能
+gem "ransack"
+
+#UI作成
+gem 'sassc-rails'
+
+# 日本語翻訳
+gem 'rails-i18n', '~> 8.0.0'
+
+# enumのi18n化
+gem 'enum_help', '0.0.19'
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
@@ -64,3 +76,4 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+gem "tailwindcss-rails"
