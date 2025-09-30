@@ -20,9 +20,6 @@ gem "jbuilder"
 #検索機能
 gem "ransack"
 
-#UI作成
-gem 'sassc-rails'
-
 # 日本語翻訳
 gem 'rails-i18n', '~> 8.0.0'
 
@@ -76,4 +73,4 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-gem "tailwindcss-rails"
+gem "tailwindcss-rails", "~> 2.7"
