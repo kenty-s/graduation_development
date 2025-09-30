@@ -17,10 +17,10 @@ test:
 
 production:
   primary: &primary_production
-    <<: *default
-    database: graduation_development_production
-    username: graduation_development
-    password: <%= ENV["GRADUATION_DEVELOPMENT_DATABASE_PASSWORD"] %>
+    adapter: postgresql
+    encoding: unicode
+    url: <%= ENV['DATABASE_URL'] %>
+    max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   cache:
     <<: *primary_production
     database: graduation_development_production_cache
