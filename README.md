@@ -115,9 +115,6 @@ MVP時点では「自宅で作る料理のマンネリ解消」を主目的と�
 * `gem 'rails', '7.0.8.7'`
 * `gem "ransack"`　- 検索機能（1件ランダム出力）
 * `gem "tailwindcss-rails", "~> 2.7"` - UI作成
-* `gem 'rails-i18n', '~> 8.0.0'` - 日本語翻訳
-* `gem 'enum_help', '0.0.19'` - enumのi18n化
-
 
 ### 本リリース以後の拡張機能
 * `gem 'draper', '4.0.2'` - ビュー用データ整形
@@ -129,6 +126,8 @@ MVP時点では「自宅で作る料理のマンネリ解消」を主目的と�
 * `gem "devise"`　- ユーザー登録、自動ログイン
 * `gem 'geocoder'` - GoogleMap連携（外食対応時）
 * `gem 'kaminari'` - ページネーション
+* `gem 'rails-i18n', '~> 8.0.0'` - 日本語翻訳
+* `gem 'enum_help', '0.0.19'` - enumのi18n化
 
 > X投稿について
 > シェアボタンのみであればGem不要。API連携で自動投稿等を行う場合は`gem 'twitter'`を利用予定。どちらを採用するかは今後検討。

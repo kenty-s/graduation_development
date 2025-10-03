@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "search_result/show"
+  get "search/multiple_conditions"
   root 'home#index'
   get "home/index"
   post 'search_foods', to: 'foods#search'
