@@ -19,7 +19,7 @@ services:
     command: bash -c "apt-get update && apt-get install -y build-essential make && bundle config set --local deployment false && bundle config set --local frozen false && bundle install && rm -f tmp/pids/server.pid && bin/rails server -b 0.0.0.0"
     tty: true
     stdin_open: true
-    user: root
+    user: "1000:1000"
     volumes:
       - .:/rails
       - bundle_data:/usr/local/bundle:cached

@@ -1,0 +1,2 @@
+class TimeOfDay < ApplicationRecord
+end

@@ -4139,3 +4139,200 @@ Generating image variants require the image_processing gem. Please add `gem 'ima
 Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
 Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
 Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+  [1m[36mActiveRecord::SchemaMigration Load (8.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GraduationDevelopment'*/[0m
+Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GraduationDevelopment'*/[0m
+Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+  [1m[35m (4.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(672416971608124680) /*application='GraduationDevelopment'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GraduationDevelopment'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (16.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (22.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-10-07 21:22:11.556390', '2025-10-07 21:22:11.556394') RETURNING "key" /*application='GraduationDevelopment'*/[0m
+Migrating to CreateTimeOfDays (20251007212203)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[35m (60.1ms)[0m  [1m[35mCREATE TABLE "time_of_days" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='GraduationDevelopment'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251007212203') RETURNING "version" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (4.1ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(672416971608124680) /*application='GraduationDevelopment'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GraduationDevelopment'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='GraduationDevelopment'*/[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[35mSET search_path TO "$user", public /*application='GraduationDevelopment'*/[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mSET search_path TO public /*application='GraduationDevelopment'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO "$user", public /*application='GraduationDevelopment'*/[0m
+Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GraduationDevelopment'*/[0m
+  [1m[36mTimeOfDay Load (0.9ms)[0m  [1m[34mSELECT "time_of_days".* FROM "time_of_days" WHERE "time_of_days"."name" = '朝' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mTimeOfDay Create (2.9ms)[0m  [1m[32mINSERT INTO "time_of_days" ("name", "created_at", "updated_at") VALUES ('朝', '2025-10-07 21:23:13.134620', '2025-10-07 21:23:13.134620') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mTimeOfDay Load (0.4ms)[0m  [1m[34mSELECT "time_of_days".* FROM "time_of_days" WHERE "time_of_days"."name" = '昼' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mTimeOfDay Create (1.8ms)[0m  [1m[32mINSERT INTO "time_of_days" ("name", "created_at", "updated_at") VALUES ('昼', '2025-10-07 21:23:13.145962', '2025-10-07 21:23:13.145962') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mTimeOfDay Load (0.5ms)[0m  [1m[34mSELECT "time_of_days".* FROM "time_of_days" WHERE "time_of_days"."name" = '夜' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mTimeOfDay Create (1.9ms)[0m  [1m[32mINSERT INTO "time_of_days" ("name", "created_at", "updated_at") VALUES ('夜', '2025-10-07 21:23:13.154138', '2025-10-07 21:23:13.154138') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mTimeOfDay Load (0.6ms)[0m  [1m[34mSELECT "time_of_days".* FROM "time_of_days" WHERE "time_of_days"."name" = 'おやつ' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mTimeOfDay Create (2.2ms)[0m  [1m[32mINSERT INTO "time_of_days" ("name", "created_at", "updated_at") VALUES ('おやつ', '2025-10-07 21:23:13.162368', '2025-10-07 21:23:13.162368') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(672416971608124680) /*application='GraduationDevelopment'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GraduationDevelopment'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (6.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='GraduationDevelopment'*/[0m
+Migrating to CreateSeasons (20251007212454)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[35m (24.5ms)[0m  [1m[35mCREATE TABLE "seasons" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='GraduationDevelopment'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (2.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251007212454') RETURNING "version" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(672416971608124680) /*application='GraduationDevelopment'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GraduationDevelopment'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='GraduationDevelopment'*/[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mSET search_path TO "$user", public /*application='GraduationDevelopment'*/[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[35mSET search_path TO public /*application='GraduationDevelopment'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO "$user", public /*application='GraduationDevelopment'*/[0m
+Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GraduationDevelopment'*/[0m
+  [1m[36mTimeOfDay Load (0.9ms)[0m  [1m[34mSELECT "time_of_days".* FROM "time_of_days" WHERE "time_of_days"."name" = '朝' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTimeOfDay Load (0.5ms)[0m  [1m[34mSELECT "time_of_days".* FROM "time_of_days" WHERE "time_of_days"."name" = '昼' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTimeOfDay Load (0.3ms)[0m  [1m[34mSELECT "time_of_days".* FROM "time_of_days" WHERE "time_of_days"."name" = '夜' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTimeOfDay Load (0.3ms)[0m  [1m[34mSELECT "time_of_days".* FROM "time_of_days" WHERE "time_of_days"."name" = 'おやつ' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mSeason Load (1.0ms)[0m  [1m[34mSELECT "seasons".* FROM "seasons" WHERE "seasons"."name" = '春' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mSeason Create (2.4ms)[0m  [1m[32mINSERT INTO "seasons" ("name", "created_at", "updated_at") VALUES ('春', '2025-10-07 21:26:05.038143', '2025-10-07 21:26:05.038143') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (3.8ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mSeason Load (0.4ms)[0m  [1m[34mSELECT "seasons".* FROM "seasons" WHERE "seasons"."name" = '夏' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mSeason Create (1.3ms)[0m  [1m[32mINSERT INTO "seasons" ("name", "created_at", "updated_at") VALUES ('夏', '2025-10-07 21:26:05.049322', '2025-10-07 21:26:05.049322') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mSeason Load (0.5ms)[0m  [1m[34mSELECT "seasons".* FROM "seasons" WHERE "seasons"."name" = '秋' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mSeason Create (1.6ms)[0m  [1m[32mINSERT INTO "seasons" ("name", "created_at", "updated_at") VALUES ('秋', '2025-10-07 21:26:05.056253', '2025-10-07 21:26:05.056253') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mSeason Load (0.5ms)[0m  [1m[34mSELECT "seasons".* FROM "seasons" WHERE "seasons"."name" = '冬' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mSeason Create (1.5ms)[0m  [1m[32mINSERT INTO "seasons" ("name", "created_at", "updated_at") VALUES ('冬', '2025-10-07 21:26:05.063834', '2025-10-07 21:26:05.063834') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(672416971608124680) /*application='GraduationDevelopment'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GraduationDevelopment'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='GraduationDevelopment'*/[0m
+Migrating to CreateMoods (20251007212732)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[35m (16.4ms)[0m  [1m[35mCREATE TABLE "moods" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='GraduationDevelopment'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251007212732') RETURNING "version" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+Migrating to CreateGenres (20251007212736)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[35m (14.7ms)[0m  [1m[35mCREATE TABLE "genres" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='GraduationDevelopment'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251007212736') RETURNING "version" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+Migrating to CreateCookingStyles (20251007212741)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[35m (11.9ms)[0m  [1m[35mCREATE TABLE "cooking_styles" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='GraduationDevelopment'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251007212741') RETURNING "version" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+Migrating to CreateHealthinessTypes (20251007212745)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[35m (15.0ms)[0m  [1m[35mCREATE TABLE "healthiness_types" ("id" bigserial primary key, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='GraduationDevelopment'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20251007212745') RETURNING "version" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(672416971608124680) /*application='GraduationDevelopment'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GraduationDevelopment'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='GraduationDevelopment'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO "$user", public /*application='GraduationDevelopment'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='GraduationDevelopment'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO "$user", public /*application='GraduationDevelopment'*/[0m
+Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GraduationDevelopment'*/[0m
+  [1m[36mTimeOfDay Load (0.6ms)[0m  [1m[34mSELECT "time_of_days".* FROM "time_of_days" WHERE "time_of_days"."name" = '朝' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTimeOfDay Load (0.7ms)[0m  [1m[34mSELECT "time_of_days".* FROM "time_of_days" WHERE "time_of_days"."name" = '昼' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTimeOfDay Load (0.8ms)[0m  [1m[34mSELECT "time_of_days".* FROM "time_of_days" WHERE "time_of_days"."name" = '夜' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTimeOfDay Load (0.5ms)[0m  [1m[34mSELECT "time_of_days".* FROM "time_of_days" WHERE "time_of_days"."name" = 'おやつ' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mSeason Load (0.7ms)[0m  [1m[34mSELECT "seasons".* FROM "seasons" WHERE "seasons"."name" = '春' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mSeason Load (0.6ms)[0m  [1m[34mSELECT "seasons".* FROM "seasons" WHERE "seasons"."name" = '夏' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mSeason Load (0.6ms)[0m  [1m[34mSELECT "seasons".* FROM "seasons" WHERE "seasons"."name" = '秋' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mSeason Load (0.7ms)[0m  [1m[34mSELECT "seasons".* FROM "seasons" WHERE "seasons"."name" = '冬' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mMood Load (0.7ms)[0m  [1m[34mSELECT "moods".* FROM "moods" WHERE "moods"."name" = '疲れた' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mMood Create (0.7ms)[0m  [1m[32mINSERT INTO "moods" ("name", "created_at", "updated_at") VALUES ('疲れた', '2025-10-07 21:27:59.045909', '2025-10-07 21:27:59.045909') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mMood Load (0.6ms)[0m  [1m[34mSELECT "moods".* FROM "moods" WHERE "moods"."name" = '元気' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mMood Create (2.1ms)[0m  [1m[32mINSERT INTO "moods" ("name", "created_at", "updated_at") VALUES ('元気', '2025-10-07 21:27:59.053050', '2025-10-07 21:27:59.053050') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mMood Load (0.6ms)[0m  [1m[34mSELECT "moods".* FROM "moods" WHERE "moods"."name" = 'リラックス' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mMood Create (1.6ms)[0m  [1m[32mINSERT INTO "moods" ("name", "created_at", "updated_at") VALUES ('リラックス', '2025-10-07 21:27:59.060693', '2025-10-07 21:27:59.060693') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mMood Load (0.5ms)[0m  [1m[34mSELECT "moods".* FROM "moods" WHERE "moods"."name" = '集中したい' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mMood Create (2.8ms)[0m  [1m[32mINSERT INTO "moods" ("name", "created_at", "updated_at") VALUES ('集中したい', '2025-10-07 21:27:59.067499', '2025-10-07 21:27:59.067499') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mMood Load (0.6ms)[0m  [1m[34mSELECT "moods".* FROM "moods" WHERE "moods"."name" = '特別な日' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mMood Create (1.5ms)[0m  [1m[32mINSERT INTO "moods" ("name", "created_at", "updated_at") VALUES ('特別な日', '2025-10-07 21:27:59.076063', '2025-10-07 21:27:59.076063') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mGenre Load (1.4ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."name" = '和食' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mGenre Create (1.4ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ('和食', '2025-10-07 21:27:59.093822', '2025-10-07 21:27:59.093822') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mGenre Load (0.4ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."name" = '洋食' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mGenre Create (1.9ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ('洋食', '2025-10-07 21:27:59.106379', '2025-10-07 21:27:59.106379') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mGenre Load (0.3ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."name" = '中華' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mGenre Create (1.1ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ('中華', '2025-10-07 21:27:59.113468', '2025-10-07 21:27:59.113468') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mGenre Load (0.3ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."name" = 'エスニック' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mGenre Create (2.2ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ('エスニック', '2025-10-07 21:27:59.119077', '2025-10-07 21:27:59.119077') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mGenre Load (0.3ms)[0m  [1m[34mSELECT "genres".* FROM "genres" WHERE "genres"."name" = 'その他' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mGenre Create (1.1ms)[0m  [1m[32mINSERT INTO "genres" ("name", "created_at", "updated_at") VALUES ('その他', '2025-10-07 21:27:59.127080', '2025-10-07 21:27:59.127080') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mCookingStyle Load (0.6ms)[0m  [1m[34mSELECT "cooking_styles".* FROM "cooking_styles" WHERE "cooking_styles"."name" = '簡単' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mCookingStyle Create (0.5ms)[0m  [1m[32mINSERT INTO "cooking_styles" ("name", "created_at", "updated_at") VALUES ('簡単', '2025-10-07 21:27:59.143584', '2025-10-07 21:27:59.143584') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mCookingStyle Load (0.3ms)[0m  [1m[34mSELECT "cooking_styles".* FROM "cooking_styles" WHERE "cooking_styles"."name" = '本格的' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mCookingStyle Create (1.3ms)[0m  [1m[32mINSERT INTO "cooking_styles" ("name", "created_at", "updated_at") VALUES ('本格的', '2025-10-07 21:27:59.148807', '2025-10-07 21:27:59.148807') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mCookingStyle Load (0.4ms)[0m  [1m[34mSELECT "cooking_styles".* FROM "cooking_styles" WHERE "cooking_styles"."name" = '温かい' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mCookingStyle Create (1.5ms)[0m  [1m[32mINSERT INTO "cooking_styles" ("name", "created_at", "updated_at") VALUES ('温かい', '2025-10-07 21:27:59.156105', '2025-10-07 21:27:59.156105') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mCookingStyle Load (0.3ms)[0m  [1m[34mSELECT "cooking_styles".* FROM "cooking_styles" WHERE "cooking_styles"."name" = '冷たい' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mCookingStyle Create (1.7ms)[0m  [1m[32mINSERT INTO "cooking_styles" ("name", "created_at", "updated_at") VALUES ('冷たい', '2025-10-07 21:27:59.161937', '2025-10-07 21:27:59.161937') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mHealthinessType Load (0.7ms)[0m  [1m[34mSELECT "healthiness_types".* FROM "healthiness_types" WHERE "healthiness_types"."name" = 'ヘルシー' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mHealthinessType Create (0.6ms)[0m  [1m[32mINSERT INTO "healthiness_types" ("name", "created_at", "updated_at") VALUES ('ヘルシー', '2025-10-07 21:27:59.179133', '2025-10-07 21:27:59.179133') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mHealthinessType Load (0.2ms)[0m  [1m[34mSELECT "healthiness_types".* FROM "healthiness_types" WHERE "healthiness_types"."name" = 'こってり' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mHealthinessType Create (2.2ms)[0m  [1m[32mINSERT INTO "healthiness_types" ("name", "created_at", "updated_at") VALUES ('こってり', '2025-10-07 21:27:59.184536', '2025-10-07 21:27:59.184536') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mHealthinessType Load (0.5ms)[0m  [1m[34mSELECT "healthiness_types".* FROM "healthiness_types" WHERE "healthiness_types"."name" = '野菜多め' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mHealthinessType Create (1.5ms)[0m  [1m[32mINSERT INTO "healthiness_types" ("name", "created_at", "updated_at") VALUES ('野菜多め', '2025-10-07 21:27:59.192487', '2025-10-07 21:27:59.192487') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+  [1m[36mHealthinessType Load (0.3ms)[0m  [1m[34mSELECT "healthiness_types".* FROM "healthiness_types" WHERE "healthiness_types"."name" = 'タンパク質重視' LIMIT 1 /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='GraduationDevelopment'*/[0m
+  [1m[36mHealthinessType Create (1.1ms)[0m  [1m[32mINSERT INTO "healthiness_types" ("name", "created_at", "updated_at") VALUES ('タンパク質重視', '2025-10-07 21:27:59.198068', '2025-10-07 21:27:59.198068') RETURNING "id" /*application='GraduationDevelopment'*/[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*application='GraduationDevelopment'*/[0m
+Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+  [1m[36mActiveRecord::SchemaMigration Load (6.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GraduationDevelopment'*/[0m

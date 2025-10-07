@@ -1,0 +1,2 @@
+class CookingStyle < ApplicationRecord
+end
