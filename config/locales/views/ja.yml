@@ -1,0 +1,114 @@
+# Rails基礎よりコピペ。要修正。
+ja:
+  helpers:
+    submit:
+      create: 登録
+      submit: 保存
+      update: 更新
+    label:
+      email: メールアドレス
+      password: パスワード
+  defaults:
+    create: 作成
+    post: 投稿
+    search_word: 検索ワード
+    edit: 編集
+    show: 詳細
+    delete: 削除
+    delete_confirm: 削除しますか？
+    password_reset: パスワードリセット
+    unspecified: 指定なし
+    flash_message:
+      created: "%{item}を作成しました"
+      not_created: "%{item}を作成出来ませんでした"
+      updated: "%{item}を更新しました"
+      not_updated: "%{item}を更新出来ませんでした"
+      deleted: "%{item}を削除しました"
+      require_login: ログインしてください
+      not_authorized: 権限がありません
+  header:
+    login: ログイン
+    logout: ログアウト
+    board: 掲示板
+    board_index: 掲示板一覧
+    create_board: 掲示板作成
+    bookmark_index: ブックマーク一覧
+    profile: プロフィール
+  user_sessions:
+    new:
+      title: ログイン
+      login: ログイン
+      to_register_page: 登録ページへ
+      password_forget: パスワードをお忘れの方はこちら
+    create:
+      success: ログインしました
+      failure: ログインに失敗しました
+    destroy:
+      success: ログアウトしました
+  users:
+    new:
+      create: 登録
+      title: ユーザー登録
+      to_login_page: ログインページへ
+    create:
+      success: ユーザー登録が完了しました
+      failure: ユーザー登録に失敗しました
+  boards:
+    new:
+      title: 掲示板作成
+    show:
+      title: 掲示板詳細
+    index:
+      title: 掲示板一覧
+    edit:
+      title: 掲示板編集
+    bookmarks:
+      title: ブックマーク一覧
+      no_result: ブックマーク中の掲示板がありません。
+  bookmarks:
+    create:
+      success: ブックマークしました
+    destroy:
+      success: ブックマークを外しました
+  profiles:
+    show:
+      title: プロフィール
+    edit:
+      title: プロフィール編集
+  password_resets:
+    new:
+      title: パスワードリセット申請
+      submit: 送信
+    edit:
+      title: パスワードリセット
+    create:
+      success: パスワードリセット手順を送信しました
+    update:
+      success: パスワードを変更しました
+  admin:
+    user_sessions:
+      new:
+        title: ログイン
+        login: ログイン
+      create:
+        success: ログインしました
+        failure: ログインに失敗しました
+      destroy:
+        success: ログアウトしました
+    dashboards:
+      index:
+        title: ダッシュボード
+    users:
+      index:
+        title: ユーザー一覧
+      edit:
+        title: ユーザー編集
+      show:
+        title: ユーザー詳細
+    boards:
+      index:
+        title: 掲示板一覧
+      edit:
+        title: 掲示板編集
+      show:
+        title: 掲示板詳細
