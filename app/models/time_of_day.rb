@@ -1,2 +1,0 @@
-class TimeOfDay < ApplicationRecord
-end

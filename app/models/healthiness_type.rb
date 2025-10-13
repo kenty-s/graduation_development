@@ -1,2 +1,0 @@
-class HealthinessType < ApplicationRecord
-end

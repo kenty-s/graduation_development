@@ -1,4 +1,23 @@
-<div>
-  <h1 class="font-bold text-4xl">Dishes#search</h1>
-  <p>Find me in app/views/dishes/search.html.erb</p>
-</div>
+<% if @dish %>
+  <div class="dish-detail">
+    <h1><%= @dish.name %></h1>
+    <div class="dish-info">
+      <p><strong>調理時間:</strong> <%= @dish.cooking_time %>分</p>
+      <p><strong>カテゴリー:</strong> <%= @dish.category %></p>
+      <p><strong>材料:</strong> <%= @dish.ingredients %></p>
+    </div>
+    <div class="recipe">
+      <h3>作り方</h3>
+      <p><%= @dish.recipe %></p>
+    </div>
+
+    <!-- MVP後の機能 -->
+    <div class="actions">
+      <%= link_to "再検索", root_path, class: "btn" %>
+      <!-- X投稿機能（MVP後） -->
+    </div>
+  </div>
+<% else %>
+  <p>条件に合う料理が見つかりませんでした</p>
+  <%= link_to "検索条件を変更", root_path %>
+<% end %>

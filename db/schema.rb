@@ -10,43 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_10_07_212745) do
+ActiveRecord::Schema[8.1].define(version: 2025_10_13_023129) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
-  create_table "cooking_styles", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
     t.datetime "updated_at", null: false
   end
 
-  create_table "genres", force: :cascade do |t|
+  create_table "category_contents", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.bigint "dish_id", null: false
+    t.string "label"
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_category_contents_on_category_id"
+    t.index ["dish_id"], name: "index_category_contents_on_dish_id"
+  end
+
+  create_table "dishes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
     t.datetime "updated_at", null: false
   end
 
-  create_table "healthiness_types", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "name"
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "moods", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "name"
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "seasons", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "name"
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "time_of_days", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "name"
-    t.datetime "updated_at", null: false
-  end
+  add_foreign_key "category_contents", "categories"
+  add_foreign_key "category_contents", "dishes"
 end

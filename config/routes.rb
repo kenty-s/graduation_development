@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get "search/multiple_conditions"
   root 'home#index'
   get "home/index"
-  post 'search_foods', to: 'foods#search'
+  get 'search_dishes', to: 'dishes#search'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -16,4 +16,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  
 end
