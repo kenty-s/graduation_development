@@ -1,46 +1,31 @@
-# 属性データの作成
-puts "Creating attributes..."
+# カテゴリを作成（全てのタグをCategoryとして統合）
+puts "Creating categories..."
+
+# 気分（MVP用：ガッツリ/サッパリ）
+['ガッツリ', 'サッパリ'].each { |name| Category.find_or_create_by(name: name) }
 
 # 時間帯
-time_of_days = ['朝', '昼', '夜', 'おやつ']
-time_of_days.each do |name|
-  TimeOfDay.find_or_create_by(name: name)
-end
+['朝', '昼', '夜', 'おやつ'].each { |name| Category.find_or_create_by(name: name) }
 
 # 季節
-seasons = ['春', '夏', '秋', '冬']
-seasons.each do |name|
-  Season.find_or_create_by(name: name)
-end
+['春', '夏', '秋', '冬'].each { |name| Category.find_or_create_by(name: name) }
 
-# 気分
-moods = ['疲れた', '元気', 'リラックス', '集中したい', '特別な日']
-moods.each do |name|
-  Mood.find_or_create_by(name: name)
-end
+# 気分詳細
+['疲れた', '元気', 'リラックス', '集中したい', '特別な日'].each { |name| Category.find_or_create_by(name: name) }
 
 # ジャンル
-genres = ['和食', '洋食', '中華', 'エスニック', 'その他']
-genres.each do |name|
-  Genre.find_or_create_by(name: name)
-end
+['和食', '洋食', '中華', 'エスニック', 'その他'].each { |name| Category.find_or_create_by(name: name) }
 
 # 調理スタイル
-cooking_styles = ['簡単', '本格的', '温かい', '冷たい']
-cooking_styles.each do |name|
-  CookingStyle.find_or_create_by(name: name)
-end
+['簡単', '本格的', '温かい', '冷たい'].each { |name| Category.find_or_create_by(name: name) }
 
 # ヘルシーさ
-healthiness_types = ['ヘルシー', 'こってり', '野菜多め', 'タンパク質重視']
-healthiness_types.each do |name|
-  HealthinessType.find_or_create_by(name: name)
-end
+['ヘルシー', 'こってり', '野菜多め', 'タンパク質重視'].each { |name| Category.find_or_create_by(name: name) }
 
-puts "Attributes created!"
+puts "Categories created!"
 
 # 料理データの作成
-puts "Creating foods..."
+puts "Creating dishes..."
 
 foods_data = [
   # ガッツリ系 - 朝食
@@ -52,9 +37,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['こってり', 'タンパク質重視'],
-    tags: ['卵', 'ベーコン', '朝食'],
-    spices: ['黒胡椒', 'パプリカ', 'ガーリックパウダー']
+    healthiness_types: ['こってり', 'タンパク質重視']
   },
   {
     name: 'パンケーキ',
@@ -64,9 +47,7 @@ foods_data = [
     moods: ['特別な日', 'リラックス'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['甘い', 'メープル', 'バター'],
-    spices: ['バニラエッセンス', 'シナモン', 'ナツメグ']
+    healthiness_types: ['こってり']
   },
   {
     name: '焼き魚',
@@ -76,9 +57,7 @@ foods_data = [
     moods: ['集中したい'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['魚', '和風', '朝食'],
-    spices: ['塩', '醤油', '生姜']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: 'フレンチトースト',
@@ -88,9 +67,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['パン', '卵', '甘い'],
-    spices: ['バニラエッセンス', 'シナモン', 'ナツメグ']
+    healthiness_types: ['こってり']
   },
   {
     name: 'チーズオムレツ',
@@ -100,9 +77,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['タンパク質重視'],
-    tags: ['卵', 'チーズ', 'バター'],
-    spices: ['黒胡椒', 'チャイブ', 'パセリ']
+    healthiness_types: ['タンパク質重視']
   },
   {
     name: 'ワッフル',
@@ -112,9 +87,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['甘い', 'バター', 'シロップ'],
-    spices: ['バニラエッセンス', 'シナモン', 'ナツメグ']
+    healthiness_types: ['こってり']
   },
   {
     name: 'イングリッシュブレックファスト',
@@ -124,9 +97,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり', 'タンパク質重視'],
-    tags: ['卵', 'ソーセージ', 'ベーコン'],
-    spices: ['黒胡椒', 'ハーブ', 'ガーリック']
+    healthiness_types: ['こってり', 'タンパク質重視']
   },
   {
     name: 'ホットサンド',
@@ -136,9 +107,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['パン', 'チーズ', 'ハム'],
-    spices: ['黒胡椒', 'マスタード', 'バター']
+    healthiness_types: ['こってり']
   },
   {
     name: 'クロワッサンサンド',
@@ -148,9 +117,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['洋食'],
     cooking_styles: ['本格的'],
-    healthiness_types: ['こってり'],
-    tags: ['クロワッサン', 'ハム', 'チーズ'],
-    spices: ['黒胡椒', 'マヨネーズ', 'レタス']
+    healthiness_types: ['こってり']
   },
   {
     name: '牛丼',
@@ -160,9 +127,7 @@ foods_data = [
     moods: ['疲れた', '元気'],
     genres: ['和食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['こってり', 'タンパク質重視'],
-    tags: ['牛肉', 'ご飯', '玉ねぎ'],
-    spices: ['醤油', 'みりん', '生姜']
+    healthiness_types: ['こってり', 'タンパク質重視']
   },
 
   # ガッツリ系 - 昼食・夜食
@@ -174,9 +139,7 @@ foods_data = [
     moods: ['元気', '疲れた'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり', 'タンパク質重視'],
-    tags: ['揚げ物', '豚肉', 'キャベツ'],
-    spices: ['パン粉', '胡椒', 'ソース']
+    healthiness_types: ['こってり', 'タンパク質重視']
   },
   {
     name: 'ハンバーガー',
@@ -186,9 +149,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['牛肉', 'チーズ', 'パン'],
-    spices: ['黒胡椒', 'オニオンパウダー', 'パプリカ']
+    healthiness_types: ['こってり']
   },
   {
     name: 'ラーメン',
@@ -198,9 +159,7 @@ foods_data = [
     moods: ['疲れた', '元気'],
     genres: ['中華'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['麺', 'スープ', 'チャーシュー'],
-    spices: ['にんにく', '生姜', '胡椒']
+    healthiness_types: ['こってり']
   },
   {
     name: 'カレーライス',
@@ -210,9 +169,7 @@ foods_data = [
     moods: ['元気', '疲れた'],
     genres: ['その他'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['野菜多め'],
-    tags: ['スパイス', 'ご飯', '野菜'],
-    spices: ['カレーパウダー', 'ターメリック', 'クミン']
+    healthiness_types: ['野菜多め']
   },
   {
     name: 'チキンソテー',
@@ -222,9 +179,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['タンパク質重視'],
-    tags: ['鶏肉', 'ハーブ', 'ガーリック'],
-    spices: ['ローズマリー', 'タイム', 'ガーリック']
+    healthiness_types: ['タンパク質重視']
   },
   {
     name: 'ピザ',
@@ -234,9 +189,7 @@ foods_data = [
     moods: ['元気', '特別な日'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['チーズ', 'トマト', 'パン生地'],
-    spices: ['オレガノ', 'バジル', 'ガーリック']
+    healthiness_types: ['こってり']
   },
   {
     name: 'パスタボロネーゼ',
@@ -246,9 +199,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['パスタ', 'ミートソース', 'チーズ'],
-    spices: ['オレガノ', 'バジル', 'ローズマリー']
+    healthiness_types: ['こってり']
   },
   {
     name: '唐揚げ',
@@ -258,9 +209,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['和食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['こってり', 'タンパク質重視'],
-    tags: ['鶏肉', '揚げ物', 'にんにく'],
-    spices: ['生姜', 'にんにく', '胡椒']
+    healthiness_types: ['こってり', 'タンパク質重視']
   },
   {
     name: 'ステーキ',
@@ -270,9 +219,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['タンパク質重視'],
-    tags: ['牛肉', '焼き肉', 'ガーリック'],
-    spices: ['黒胡椒', 'ガーリック', 'ローズマリー']
+    healthiness_types: ['タンパク質重視']
   },
   {
     name: '親子丼',
@@ -282,9 +229,7 @@ foods_data = [
     moods: ['疲れた', 'リラックス'],
     genres: ['和食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['タンパク質重視'],
-    tags: ['鶏肉', '卵', 'ご飯'],
-    spices: ['醤油', 'みりん', '出汁']
+    healthiness_types: ['タンパク質重視']
   },
   {
     name: 'ハンバーグ',
@@ -294,9 +239,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり', 'タンパク質重視'],
-    tags: ['牛肉', '豚肉', 'ソース'],
-    spices: ['黒胡椒', 'ナツメグ', 'オニオンパウダー']
+    healthiness_types: ['こってり', 'タンパク質重視']
   },
   {
     name: '焼きそば',
@@ -306,9 +249,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['和食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['麺', 'ソース', '野菜'],
-    spices: ['ウスターソース', '青のり', 'かつお節']
+    healthiness_types: ['こってり']
   },
   {
     name: 'タコライス',
@@ -318,9 +259,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['エスニック'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['野菜多め'],
-    tags: ['ひき肉', 'チーズ', 'レタス'],
-    spices: ['チリパウダー', 'クミン', 'パプリカ']
+    healthiness_types: ['野菜多め']
   },
   {
     name: 'オムライス',
@@ -330,9 +269,7 @@ foods_data = [
     moods: ['元気', 'リラックス'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['卵', 'ご飯', 'ケチャップ'],
-    spices: ['ケチャップ', '黒胡椒', 'パセリ']
+    healthiness_types: ['こってり']
   },
   {
     name: 'ロコモコ',
@@ -342,9 +279,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['こってり', 'タンパク質重視'],
-    tags: ['ハンバーグ', '卵', 'ご飯'],
-    spices: ['テリヤキソース', '黒胡椒', 'ガーリック']
+    healthiness_types: ['こってり', 'タンパク質重視']
   },
   {
     name: 'チキンカツ',
@@ -354,9 +289,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり', 'タンパク質重視'],
-    tags: ['鶏肉', '揚げ物', 'キャベツ'],
-    spices: ['パン粉', '胡椒', 'ソース']
+    healthiness_types: ['こってり', 'タンパク質重視']
   },
   {
     name: 'エビフライ',
@@ -366,9 +299,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['エビ', '揚げ物', 'タルタル'],
-    spices: ['パン粉', 'レモン', 'タルタルソース']
+    healthiness_types: ['こってり']
   },
   {
     name: 'カツカレー',
@@ -378,9 +309,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['とんかつ', 'カレー', 'ご飯'],
-    spices: ['カレーパウダー', 'ソース', 'ガーリック']
+    healthiness_types: ['こってり']
   },
   {
     name: 'チャーハン',
@@ -390,9 +319,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['中華'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['ご飯', '卵', 'チャーシュー'],
-    spices: ['醤油', 'ごま油', '胡椒']
+    healthiness_types: ['こってり']
   },
   {
     name: '麻婆豆腐',
@@ -402,9 +329,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['中華'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['豆腐', 'ひき肉', '辛味'],
-    spices: ['豆板醤', '花椒', 'にんにく']
+    healthiness_types: ['こってり']
   },
   {
     name: 'エビチリ',
@@ -414,9 +339,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['中華'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['タンパク質重視'],
-    tags: ['エビ', 'チリソース', '野菜'],
-    spices: ['豆板醤', 'ケチャップ', 'にんにく']
+    healthiness_types: ['タンパク質重視']
   },
   {
     name: '酢豚',
@@ -426,9 +349,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['中華'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['野菜多め'],
-    tags: ['豚肉', '野菜', '甘酢'],
-    spices: ['酢', '砂糖', 'ケチャップ']
+    healthiness_types: ['野菜多め']
   },
   {
     name: '回鍋肉',
@@ -438,9 +359,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['中華'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['野菜多め'],
-    tags: ['豚肉', 'キャベツ', '味噌'],
-    spices: ['甜面醤', '豆板醤', 'にんにく']
+    healthiness_types: ['野菜多め']
   },
   {
     name: '青椒肉絲',
@@ -450,9 +369,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['中華'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['野菜多め'],
-    tags: ['牛肉', 'ピーマン', 'たけのこ'],
-    spices: ['オイスターソース', '醤油', 'ごま油']
+    healthiness_types: ['野菜多め']
   },
   {
     name: 'ビーフストロガノフ',
@@ -462,9 +379,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['牛肉', 'クリーム', 'きのこ'],
-    spices: ['パプリカ', 'サワークリーム', '黒胡椒']
+    healthiness_types: ['こってり']
   },
   {
     name: 'ムサカ',
@@ -474,9 +389,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['野菜多め'],
-    tags: ['茄子', 'ひき肉', 'チーズ'],
-    spices: ['オレガノ', 'シナモン', 'ナツメグ']
+    healthiness_types: ['野菜多め']
   },
   {
     name: 'ラザニア',
@@ -486,9 +399,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['パスタ', 'チーズ', 'ミートソース'],
-    spices: ['バジル', 'オレガノ', 'ガーリック']
+    healthiness_types: ['こってり']
   },
   {
     name: 'パエリア',
@@ -498,9 +409,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['タンパク質重視'],
-    tags: ['米', '魚介', 'サフラン'],
-    spices: ['サフラン', 'パプリカ', 'ガーリック']
+    healthiness_types: ['タンパク質重視']
   },
   {
     name: 'リゾット',
@@ -510,9 +419,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['米', 'チーズ', 'バター'],
-    spices: ['白ワイン', 'パルメザン', 'ハーブ']
+    healthiness_types: ['こってり']
   },
   {
     name: 'グラタン',
@@ -522,9 +429,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['チーズ', 'クリーム', 'オーブン'],
-    spices: ['ナツメグ', '白胡椒', 'パルメザン']
+    healthiness_types: ['こってり']
   },
   {
     name: 'シチュー',
@@ -534,9 +439,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['野菜多め'],
-    tags: ['野菜', 'クリーム', '煮込み'],
-    spices: ['ローリエ', 'タイム', '白胡椒']
+    healthiness_types: ['野菜多め']
   },
   {
     name: 'ポークチョップ',
@@ -546,9 +449,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['タンパク質重視'],
-    tags: ['豚肉', 'ソテー', 'ハーブ'],
-    spices: ['ローズマリー', 'セージ', 'ガーリック']
+    healthiness_types: ['タンパク質重視']
   },
   {
     name: 'ローストチキン',
@@ -558,9 +459,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['タンパク質重視'],
-    tags: ['鶏肉', 'オーブン', 'ハーブ'],
-    spices: ['ローズマリー', 'タイム', 'レモン']
+    healthiness_types: ['タンパク質重視']
   },
   {
     name: 'ラムチョップ',
@@ -570,9 +469,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['タンパク質重視'],
-    tags: ['羊肉', 'ハーブ', 'グリル'],
-    spices: ['ローズマリー', 'ガーリック', 'ミント']
+    healthiness_types: ['タンパク質重視']
   },
   {
     name: 'カルボナーラ',
@@ -582,9 +479,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['パスタ', 'ベーコン', 'チーズ'],
-    spices: ['黒胡椒', 'パルメザン', 'パセリ']
+    healthiness_types: ['こってり']
   },
   {
     name: 'アマトリチャーナ',
@@ -594,9 +489,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['パスタ', 'ベーコン', 'トマト'],
-    spices: ['赤唐辛子', 'チーズ', 'バジル']
+    healthiness_types: ['こってり']
   },
   {
     name: 'ペスカトーレ',
@@ -606,9 +499,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['タンパク質重視'],
-    tags: ['パスタ', '魚介', 'トマト'],
-    spices: ['ガーリック', 'バジル', '白ワイン']
+    healthiness_types: ['タンパク質重視']
   },
   {
     name: 'アラビアータ',
@@ -618,9 +509,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['パスタ', 'トマト', '辛味'],
-    spices: ['赤唐辛子', 'ガーリック', 'バジル']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'プッタネスカ',
@@ -630,9 +519,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['パスタ', 'アンチョビ', 'オリーブ'],
-    spices: ['ケッパー', 'ガーリック', 'オレガノ']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'スパゲッティ・アリオ・オリオ',
@@ -642,9 +529,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['パスタ', 'ガーリック', 'オリーブオイル'],
-    spices: ['ガーリック', '赤唐辛子', 'パセリ']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'ボンゴレ',
@@ -654,9 +539,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['タンパク質重視'],
-    tags: ['パスタ', 'あさり', '白ワイン'],
-    spices: ['ガーリック', 'パセリ', '白ワイン']
+    healthiness_types: ['タンパク質重視']
   },
   {
     name: 'ミートボールパスタ',
@@ -666,9 +549,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['タンパク質重視'],
-    tags: ['パスタ', 'ミートボール', 'トマト'],
-    spices: ['バジル', 'オレガノ', 'ガーリック']
+    healthiness_types: ['タンパク質重視']
   },
   {
     name: 'タコス',
@@ -678,9 +559,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['エスニック'],
     cooking_styles: ['簡単'],
-    healthiness_types: ['野菜多め'],
-    tags: ['トルティーヤ', 'ひき肉', 'チーズ'],
-    spices: ['チリパウダー', 'クミン', 'コリアンダー']
+    healthiness_types: ['野菜多め']
   },
   {
     name: 'ブリトー',
@@ -690,9 +569,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['エスニック'],
     cooking_styles: ['簡単'],
-    healthiness_types: ['野菜多め'],
-    tags: ['トルティーヤ', 'チキン', 'チーズ'],
-    spices: ['サルサソース', 'クミン', 'ライム']
+    healthiness_types: ['野菜多め']
   },
   {
     name: 'エンチラーダ',
@@ -702,9 +579,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['エスニック'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['トルティーヤ', 'チーズ', 'ソース'],
-    spices: ['チリパウダー', 'クミン', 'パプリカ']
+    healthiness_types: ['こってり']
   },
   {
     name: 'ケサディーヤ',
@@ -714,9 +589,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['エスニック'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['トルティーヤ', 'チーズ', 'チキン'],
-    spices: ['クミン', 'パプリカ', 'チリパウダー']
+    healthiness_types: ['こってり']
   },
   {
     name: 'ファヒータ',
@@ -726,9 +599,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['エスニック'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['野菜多め'],
-    tags: ['チキン', 'ピーマン', '玉ねぎ'],
-    spices: ['チリパウダー', 'クミン', 'ライム']
+    healthiness_types: ['野菜多め']
   },
   {
     name: 'ナチョス',
@@ -738,9 +609,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['エスニック'],
     cooking_styles: ['簡単'],
-    healthiness_types: ['こってり'],
-    tags: ['チップス', 'チーズ', 'ひき肉'],
-    spices: ['サルサソース', 'チリパウダー', 'クミン']
+    healthiness_types: ['こってり']
   },
   {
     name: 'ガパオライス',
@@ -750,9 +619,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['エスニック'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['野菜多め'],
-    tags: ['ひき肉', 'バジル', '目玉焼き'],
-    spices: ['ナンプラー', '唐辛子', 'バジル']
+    healthiness_types: ['野菜多め']
   },
   {
     name: 'パッタイ',
@@ -762,9 +629,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['エスニック'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['米麺', 'エビ', 'もやし'],
-    spices: ['ナンプラー', 'タマリンド', 'ピーナッツ']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'グリーンカレー',
@@ -774,9 +639,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['エスニック'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['野菜多め'],
-    tags: ['ココナッツミルク', '鶏肉', '野菜'],
-    spices: ['グリーンカレーペースト', 'ココナッツ', 'バジル']
+    healthiness_types: ['野菜多め']
   },
   {
     name: 'トムヤムクン',
@@ -786,9 +649,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['エスニック'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['エビ', 'きのこ', 'スープ'],
-    spices: ['レモングラス', 'ガランガル', 'ライム']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'ビリヤニ',
@@ -798,9 +659,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['エスニック'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['野菜多め'],
-    tags: ['バスマティ米', 'チキン', 'スパイス'],
-    spices: ['サフラン', 'ガラムマサラ', 'カルダモン']
+    healthiness_types: ['野菜多め']
   },
   {
     name: 'タンドリーチキン',
@@ -810,9 +669,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['エスニック'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['タンパク質重視'],
-    tags: ['鶏肉', 'ヨーグルト', 'スパイス'],
-    spices: ['ガラムマサラ', 'ターメリック', 'パプリカ']
+    healthiness_types: ['タンパク質重視']
   },
   {
     name: 'バターチキンカレー',
@@ -822,9 +679,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['エスニック'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['鶏肉', 'トマト', 'クリーム'],
-    spices: ['ガラムマサラ', 'フェヌグリーク', 'ジンジャー']
+    healthiness_types: ['こってり']
   },
   {
     name: 'ナン',
@@ -834,9 +689,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['エスニック'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['パン', 'カレー', 'バター'],
-    spices: ['ガーリック', 'コリアンダー', 'ニゲラ']
+    healthiness_types: ['こってり']
   },
   {
     name: 'キーマカレー',
@@ -846,9 +699,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['エスニック'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['野菜多め'],
-    tags: ['ひき肉', '野菜', 'スパイス'],
-    spices: ['ガラムマサラ', 'コリアンダー', 'クミン']
+    healthiness_types: ['野菜多め']
   },
   {
     name: 'サモサ',
@@ -858,9 +709,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['エスニック'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['じゃがいも', '揚げ物', 'スパイス'],
-    spices: ['クミン', 'コリアンダー', 'ターメリック']
+    healthiness_types: ['こってり']
   },
   {
     name: 'チキンティッカ',
@@ -870,9 +719,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['エスニック'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['タンパク質重視'],
-    tags: ['鶏肉', 'ヨーグルト', 'グリル'],
-    spices: ['パプリカ', 'ガラムマサラ', 'ジンジャー']
+    healthiness_types: ['タンパク質重視']
   },
   {
     name: 'ダル',
@@ -882,9 +729,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['エスニック'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['レンズ豆', 'スパイス', 'カレー'],
-    spices: ['ターメリック', 'クミン', 'コリアンダー']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: 'プルコギ',
@@ -894,9 +739,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['エスニック'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['タンパク質重視'],
-    tags: ['牛肉', '野菜', '甘辛'],
-    spices: ['コチュジャン', 'ごま油', 'にんにく']
+    healthiness_types: ['タンパク質重視']
   },
   {
     name: 'チキン南蛮',
@@ -906,9 +749,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['鶏肉', 'タルタル', '甘酢'],
-    spices: ['酢', 'みりん', 'タルタルソース']
+    healthiness_types: ['こってり']
   },
   {
     name: 'エビマヨ',
@@ -918,9 +759,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['中華'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['エビ', 'マヨネーズ', '揚げ物'],
-    spices: ['マヨネーズ', 'レモン', 'パセリ']
+    healthiness_types: ['こってり']
   },
   {
     name: '天ぷら',
@@ -930,9 +769,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['揚げ物', '野菜', '海老'],
-    spices: ['天つゆ', '大根おろし', '生姜']
+    healthiness_types: ['こってり']
   },
   {
     name: '寿司',
@@ -942,9 +779,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['和食'],
     cooking_styles: ['本格的'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['魚', 'ご飯', '海苔'],
-    spices: ['わさび', '醤油', 'ガリ']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: '刺身',
@@ -954,9 +789,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['和食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['魚', '刺身', 'わさび'],
-    spices: ['わさび', '醤油', 'しそ']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: 'すき焼き',
@@ -966,9 +799,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['牛肉', '野菜', '鍋'],
-    spices: ['醤油', 'みりん', '砂糖']
+    healthiness_types: ['こってり']
   },
   {
     name: 'しゃぶしゃぶ',
@@ -978,9 +809,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['牛肉', '野菜', '鍋'],
-    spices: ['ポン酢', 'ごまだれ', 'もみじおろし']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: '焼き鳥',
@@ -990,9 +819,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['タンパク質重視'],
-    tags: ['鶏肉', '串焼き', 'タレ'],
-    spices: ['タレ', '塩', '七味']
+    healthiness_types: ['タンパク質重視']
   },
   {
     name: 'うな重',
@@ -1002,9 +829,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['タンパク質重視'],
-    tags: ['うなぎ', 'ご飯', 'タレ'],
-    spices: ['蒲焼きのタレ', '山椒', 'みりん']
+    healthiness_types: ['タンパク質重視']
   },
   {
     name: '海鮮丼',
@@ -1014,9 +839,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['和食'],
     cooking_styles: ['簡単'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['魚', 'ご飯', '海苔'],
-    spices: ['わさび', '醤油', 'のり']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: 'かつ丼',
@@ -1026,9 +849,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['とんかつ', '卵', 'ご飯'],
-    spices: ['醤油', 'みりん', '出汁']
+    healthiness_types: ['こってり']
   },
   {
     name: '天丼',
@@ -1038,9 +859,7 @@ foods_data = [
     moods: ['元気'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['天ぷら', 'ご飯', 'タレ'],
-    spices: ['天丼のタレ', '醤油', 'みりん']
+    healthiness_types: ['こってり']
   },
   {
     name: '鉄火丼',
@@ -1050,9 +869,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['和食'],
     cooking_styles: ['簡単'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['まぐろ', 'ご飯', '海苔'],
-    spices: ['わさび', '醤油', 'しそ']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: 'ちらし寿司',
@@ -1062,9 +879,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['和食'],
     cooking_styles: ['本格的'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['魚', 'ご飯', '野菜'],
-    spices: ['酢', '醤油', 'わさび']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: '手巻き寿司',
@@ -1074,9 +889,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['和食'],
     cooking_styles: ['簡単'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['魚', '海苔', 'ご飯'],
-    spices: ['わさび', '醤油', 'ガリ']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'おでん',
@@ -1086,9 +899,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['煮込み', '大根', 'こんにゃく'],
-    spices: ['出汁', '醤油', 'からし']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: '肉じゃが',
@@ -1098,9 +909,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['野菜多め'],
-    tags: ['じゃがいも', '牛肉', '煮物'],
-    spices: ['醤油', 'みりん', '出汁']
+    healthiness_types: ['野菜多め']
   },
   {
     name: 'きんぴらごぼう',
@@ -1110,9 +919,7 @@ foods_data = [
     moods: ['集中したい'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['ヘルシー', '野菜多め'],
-    tags: ['ごぼう', '人参', '炒め物'],
-    spices: ['醤油', 'みりん', '七味']
+    healthiness_types: ['ヘルシー', '野菜多め']
   },
   {
     name: 'ぶり大根',
@@ -1122,9 +929,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['ぶり', '大根', '煮物'],
-    spices: ['醤油', 'みりん', '生姜']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: '筑前煮',
@@ -1134,9 +939,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['野菜多め'],
-    tags: ['鶏肉', '野菜', '煮物'],
-    spices: ['醤油', 'みりん', '出汁']
+    healthiness_types: ['野菜多め']
   },
   {
     name: '豚の角煮',
@@ -1146,9 +949,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['こってり'],
-    tags: ['豚肉', '煮込み', '甘辛'],
-    spices: ['醤油', 'みりん', '砂糖']
+    healthiness_types: ['こってり']
   },
   {
     name: '鶏の照り焼き',
@@ -1158,9 +959,57 @@ foods_data = [
     moods: ['元気'],
     genres: ['和食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['タンパク質重視'],
-    tags: ['鶏肉', '照り焼き', 'タレ'],
-    spices: ['醤油', 'みりん', '生姜']
+    healthiness_types: ['タンパク質重視']
+  },
+  {
+    name: '山形風芋煮',
+    category: 'ガッツリ',
+    time_of_days: ['夜'],
+    seasons: ['秋', '冬'],
+    moods: ['特別な日', 'リラックス'],
+    genres: ['和食'],
+    cooking_styles: ['本格的', '温かい'],
+    healthiness_types: ['野菜多め']
+  },
+  {
+    name: '宮城風芋煮',
+    category: 'ガッツリ',
+    time_of_days: ['夜'],
+    seasons: ['秋', '冬'],
+    moods: ['リラックス'],
+    genres: ['和食'],
+    cooking_styles: ['本格的', '温かい'],
+    healthiness_types: ['野菜多め', 'こってり']
+  },
+  {
+    name: '芋の子汁',
+    category: 'ガッツリ',
+    time_of_days: ['夜'],
+    seasons: ['秋', '冬'],
+    moods: ['リラックス'],
+    genres: ['和食'],
+    cooking_styles: ['本格的', '温かい'],
+    healthiness_types: ['ヘルシー', '野菜多め']
+  },
+  {
+    name: 'かしみん焼き',
+    category: 'ガッツリ',
+    time_of_days: ['昼', 'おやつ'],
+    seasons: ['春', '夏', '秋', '冬'],
+    moods: ['元気'],
+    genres: ['和食'],
+    cooking_styles: ['本格的', '温かい'],
+    healthiness_types: ['こってり', 'タンパク質重視']
+  },
+  {
+    name: '水ナスの浅漬け',
+    category: 'サッパリ',
+    time_of_days: ['昼', '夜'],
+    seasons: ['夏'],
+    moods: ['リラックス'],
+    genres: ['和食'],
+    cooking_styles: ['簡単', '冷たい'],
+    healthiness_types: ['ヘルシー', '野菜多め']
   },
 
   # サッパリ系 - 朝食
@@ -1172,9 +1021,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['果物', 'ヨーグルト', '甘い'],
-    spices: ['はちみつ', 'バニラ', 'シナモン']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'おにぎり',
@@ -1184,9 +1031,7 @@ foods_data = [
     moods: ['集中したい'],
     genres: ['和食'],
     cooking_styles: ['簡単'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['ご飯', '海苔', 'シンプル'],
-    spices: ['塩', '醤油', 'かつお節']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'スムージーボウル',
@@ -1196,9 +1041,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー', '野菜多め'],
-    tags: ['果物', '野菜', 'ナッツ'],
-    spices: ['チアシード', 'ココナッツ', 'アガベ']
+    healthiness_types: ['ヘルシー', '野菜多め']
   },
   {
     name: 'トースト',
@@ -1208,9 +1051,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['パン', 'バター', 'ジャム'],
-    spices: ['バター', 'ジャム', 'はちみつ']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: '納豆ご飯',
@@ -1220,9 +1061,7 @@ foods_data = [
     moods: ['集中したい'],
     genres: ['和食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['納豆', 'ご飯', '和風'],
-    spices: ['醤油', 'からし', 'ネギ']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: 'シリアル',
@@ -1232,9 +1071,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['穀物', '牛乳', '果物'],
-    spices: ['はちみつ', 'ナッツ', 'ドライフルーツ']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'オートミール',
@@ -1244,9 +1081,7 @@ foods_data = [
     moods: ['集中したい'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['オーツ', '牛乳', '果物'],
-    spices: ['シナモン', 'はちみつ', 'ナッツ']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'アサイーボウル',
@@ -1256,9 +1091,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['アサイー', '果物', 'グラノーラ'],
-    spices: ['ココナッツ', 'チアシード', 'はちみつ']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'プレーンヨーグルト',
@@ -1268,9 +1101,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['ヨーグルト', 'プレーン', 'シンプル'],
-    spices: ['はちみつ', 'ナッツ', 'ジャム']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'バナナスムージー',
@@ -1280,9 +1111,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['バナナ', '牛乳', '甘い'],
-    spices: ['はちみつ', 'バニラ', 'シナモン']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: '卵かけご飯',
@@ -1292,9 +1121,7 @@ foods_data = [
     moods: ['集中したい'],
     genres: ['和食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['卵', 'ご飯', 'シンプル'],
-    spices: ['醤油', 'ネギ', 'のり']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: 'おかゆ',
@@ -1304,9 +1131,7 @@ foods_data = [
     moods: ['疲れた', 'リラックス'],
     genres: ['和食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['ご飯', 'シンプル', '消化'],
-    spices: ['塩', '梅干し', 'のり']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'みそ汁',
@@ -1316,9 +1141,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['味噌', '豆腐', 'わかめ'],
-    spices: ['味噌', '出汁', 'ネギ']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: '豆乳',
@@ -1328,9 +1151,7 @@ foods_data = [
     moods: ['集中したい'],
     genres: ['和食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['豆乳', 'プレーン', 'シンプル'],
-    spices: ['はちみつ', 'きな粉', 'バニラ']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: 'フルーツサラダ',
@@ -1340,9 +1161,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['果物', 'カラフル', 'ビタミン'],
-    spices: ['レモン', 'ミント', 'はちみつ']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'グリーンスムージー',
@@ -1352,9 +1171,7 @@ foods_data = [
     moods: ['集中したい'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー', '野菜多め'],
-    tags: ['緑の野菜', '果物', 'デトックス'],
-    spices: ['レモン', 'ジンジャー', 'ミント']
+    healthiness_types: ['ヘルシー', '野菜多め']
   },
 
   # サッパリ系 - 昼食・夜食
@@ -1366,9 +1183,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['そば', 'つゆ', 'ネギ'],
-    spices: ['わさび', 'ネギ', '海苔']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'サラダボウル',
@@ -1378,9 +1193,7 @@ foods_data = [
     moods: ['集中したい'],
     genres: ['洋食'],
     cooking_styles: ['簡単'],
-    healthiness_types: ['ヘルシー', '野菜多め'],
-    tags: ['野菜', 'ドレッシング', 'ナッツ'],
-    spices: ['オリーブオイル', 'レモン', 'ハーブ']
+    healthiness_types: ['ヘルシー', '野菜多め']
   },
   {
     name: '冷やし中華',
@@ -1390,9 +1203,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['中華'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['麺', '野菜', '酸味'],
-    spices: ['酢', '醤油', 'ごま']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'ポケボウル',
@@ -1402,9 +1213,7 @@ foods_data = [
     moods: ['集中したい'],
     genres: ['エスニック'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['魚', 'アボカド', 'ご飯'],
-    spices: ['醤油', 'わさび', 'ごま']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: 'お茶漬け',
@@ -1414,9 +1223,7 @@ foods_data = [
     moods: ['疲れた', 'リラックス'],
     genres: ['和食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['ご飯', 'お茶', 'のり'],
-    spices: ['わさび', '海苔', '梅干し']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'うどん',
@@ -1426,9 +1233,7 @@ foods_data = [
     moods: ['疲れた'],
     genres: ['和食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['麺', 'だし', 'ネギ'],
-    spices: ['出汁', 'ネギ', '七味']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: '野菜炒め',
@@ -1438,9 +1243,7 @@ foods_data = [
     moods: ['集中したい'],
     genres: ['中華'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['ヘルシー', '野菜多め'],
-    tags: ['野菜', '炒め物'],
-    spices: ['ごま油', '醤油', 'にんにく']
+    healthiness_types: ['ヘルシー', '野菜多め']
   },
   {
     name: '湯豆腐',
@@ -1450,9 +1253,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['豆腐', '昆布', '鍋'],
-    spices: ['ポン酢', '昆布', 'ネギ']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: 'フルーツサンド',
@@ -1462,9 +1263,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['果物', 'パン', 'クリーム'],
-    spices: ['バニラ', 'はちみつ', 'ミント']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: '抹茶アイス',
@@ -1474,9 +1273,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['抹茶', '甘い', 'アイス'],
-    spices: ['抹茶', 'きな粉', 'あんこ']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'そうめん',
@@ -1486,9 +1283,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['そうめん', 'つゆ', 'ネギ'],
-    spices: ['つゆ', 'ネギ', '生姜']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: '冷奴',
@@ -1498,9 +1293,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['豆腐', 'シンプル', '冷たい'],
-    spices: ['醤油', 'ネギ', 'かつお節']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: 'ひやむぎ',
@@ -1510,9 +1303,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['ひやむぎ', 'つゆ', 'きゅうり'],
-    spices: ['つゆ', 'ネギ', 'みょうが']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'ガスパチョ',
@@ -1522,9 +1313,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー', '野菜多め'],
-    tags: ['トマト', '冷製スープ', 'パン'],
-    spices: ['オリーブオイル', 'ビネガー', 'ガーリック']
+    healthiness_types: ['ヘルシー', '野菜多め']
   },
   {
     name: 'コンソメスープ',
@@ -1534,9 +1323,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['スープ', 'クリア', '野菜'],
-    spices: ['コンソメ', 'パセリ', 'セロリ']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'ミネストローネ',
@@ -1546,9 +1333,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['ヘルシー', '野菜多め'],
-    tags: ['トマト', '野菜', 'スープ'],
-    spices: ['バジル', 'オレガノ', 'ガーリック']
+    healthiness_types: ['ヘルシー', '野菜多め']
   },
   {
     name: 'クラムチャウダー',
@@ -1558,9 +1343,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['あさり', 'じゃがいも', 'スープ'],
-    spices: ['タイム', 'ベイリーフ', '白胡椒']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'オニオンスープ',
@@ -1570,9 +1353,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['玉ねぎ', 'チーズ', 'スープ'],
-    spices: ['白ワイン', 'タイム', 'グリュイエール']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'わかめスープ',
@@ -1582,9 +1363,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['わかめ', 'スープ', 'ネギ'],
-    spices: ['中華だし', 'ごま油', 'ネギ']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: '春雨スープ',
@@ -1594,9 +1373,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['中華'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['春雨', 'スープ', '野菜'],
-    spices: ['中華だし', 'ごま油', 'しょうが']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'すまし汁',
@@ -1606,9 +1383,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['簡単', '温かい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['だし', 'きれい', 'シンプル'],
-    spices: ['出汁', '醤油', 'みつば']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: '茶碗蒸し',
@@ -1618,9 +1393,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['卵', '出汁', '蒸し物'],
-    spices: ['出汁', '醤油', 'みりん']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: 'たまご豆腐',
@@ -1630,9 +1403,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['卵', '豆腐', '冷たい'],
-    spices: ['出汁', '醤油', 'わさび']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: 'ごま豆腐',
@@ -1642,9 +1413,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['本格的', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['ごま', '豆腐', '上品'],
-    spices: ['わさび', '醤油', 'ねぎ']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: '胡麻ドレッシングサラダ',
@@ -1654,9 +1423,7 @@ foods_data = [
     moods: ['集中したい'],
     genres: ['和食'],
     cooking_styles: ['簡単'],
-    healthiness_types: ['ヘルシー', '野菜多め'],
-    tags: ['サラダ', 'ごまドレ', '野菜'],
-    spices: ['ごまドレッシング', 'ごま', '海苔']
+    healthiness_types: ['ヘルシー', '野菜多め']
   },
   {
     name: 'シーザーサラダ',
@@ -1666,9 +1433,7 @@ foods_data = [
     moods: ['集中したい'],
     genres: ['洋食'],
     cooking_styles: ['簡単'],
-    healthiness_types: ['ヘルシー', '野菜多め'],
-    tags: ['レタス', 'チーズ', 'クルトン'],
-    spices: ['シーザードレッシング', 'パルメザン', 'レモン']
+    healthiness_types: ['ヘルシー', '野菜多め']
   },
   {
     name: 'コブサラダ',
@@ -1678,9 +1443,7 @@ foods_data = [
     moods: ['集中したい'],
     genres: ['洋食'],
     cooking_styles: ['簡単'],
-    healthiness_types: ['ヘルシー', '野菜多め'],
-    tags: ['レタス', 'チーズ', 'ベーコン'],
-    spices: ['ブルーチーズドレッシング', 'アボカド', 'トマト']
+    healthiness_types: ['ヘルシー', '野菜多め']
   },
   {
     name: 'グリーンサラダ',
@@ -1690,9 +1453,7 @@ foods_data = [
     moods: ['集中したい'],
     genres: ['洋食'],
     cooking_styles: ['簡単'],
-    healthiness_types: ['ヘルシー', '野菜多め'],
-    tags: ['レタス', '緑の野菜', 'シンプル'],
-    spices: ['オリーブオイル', 'レモン', 'ハーブ']
+    healthiness_types: ['ヘルシー', '野菜多め']
   },
   {
     name: 'カプレーゼ',
@@ -1702,9 +1463,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['トマト', 'モッツァレラ', 'バジル'],
-    spices: ['バジル', 'オリーブオイル', 'バルサミコ']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'タブレ',
@@ -1714,9 +1473,7 @@ foods_data = [
     moods: ['集中したい'],
     genres: ['エスニック'],
     cooking_styles: ['簡単'],
-    healthiness_types: ['ヘルシー', '野菜多め'],
-    tags: ['ブルグル', 'パセリ', 'トマト'],
-    spices: ['レモン', 'オリーブオイル', 'ミント']
+    healthiness_types: ['ヘルシー', '野菜多め']
   },
   {
     name: 'ファラフェル',
@@ -1726,9 +1483,7 @@ foods_data = [
     moods: ['集中したい'],
     genres: ['エスニック'],
     cooking_styles: ['本格的'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['ひよこ豆', '揚げ物', 'ハーブ'],
-    spices: ['クミン', 'コリアンダー', 'パセリ']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: 'フムス',
@@ -1738,9 +1493,7 @@ foods_data = [
     moods: ['集中したい'],
     genres: ['エスニック'],
     cooking_styles: ['簡単'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['ひよこ豆', 'ペースト', 'パン'],
-    spices: ['タヒニ', 'レモン', 'ガーリック']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: 'バババガヌーシュ',
@@ -1750,9 +1503,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['エスニック'],
     cooking_styles: ['本格的'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['なす', 'ペースト', 'パン'],
-    spices: ['タヒニ', 'レモン', 'ガーリック']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'ツァジキ',
@@ -1762,9 +1513,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['ヨーグルト', 'きゅうり', 'ディップ'],
-    spices: ['ディル', 'ガーリック', 'レモン']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'ブルスケッタ',
@@ -1774,9 +1523,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['パン', 'トマト', 'バジル'],
-    spices: ['バジル', 'ガーリック', 'オリーブオイル']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'クロスティーニ',
@@ -1786,9 +1533,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['パン', 'トッピング', '前菜'],
-    spices: ['ハーブ', 'チーズ', 'オリーブオイル']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'アクアパッツァ',
@@ -1798,9 +1543,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '温かい'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['魚', 'あさり', 'オリーブ'],
-    spices: ['白ワイン', 'ガーリック', 'パセリ']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: 'セビーチェ',
@@ -1810,9 +1553,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['エスニック'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['魚', 'ライム', '生'],
-    spices: ['ライム', 'コリアンダー', '玉ねぎ']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: 'カルパッチョ',
@@ -1822,9 +1563,7 @@ foods_data = [
     moods: ['特別な日'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー', 'タンパク質重視'],
-    tags: ['魚', '生', 'オリーブオイル'],
-    spices: ['オリーブオイル', 'レモン', 'ルッコラ']
+    healthiness_types: ['ヘルシー', 'タンパク質重視']
   },
   {
     name: 'マリネ',
@@ -1834,9 +1573,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['野菜', '酢', '漬け物'],
-    spices: ['ビネガー', 'ハーブ', 'オリーブオイル']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'ピクルス',
@@ -1846,9 +1583,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['野菜', '酢', '漬け物'],
-    spices: ['ディル', 'マスタードシード', 'ビネガー']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: '酢の物',
@@ -1858,9 +1593,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['きゅうり', '酢', '和風'],
-    spices: ['酢', '砂糖', '醤油']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: '浅漬け',
@@ -1870,9 +1603,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['野菜', '塩', '漬け物'],
-    spices: ['塩', '昆布', '生姜']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'もずく酢',
@@ -1882,9 +1613,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['もずく', '酢', '海藻'],
-    spices: ['酢', '砂糖', '生姜']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'ところてん',
@@ -1894,9 +1623,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['寒天', 'のど越し', '夏'],
-    spices: ['酢醤油', '砂糖', 'からし']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: '水羊羹',
@@ -1906,9 +1633,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['本格的', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['あんこ', '寒天', '甘い'],
-    spices: ['小豆', '砂糖', '寒天']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'かき氷',
@@ -1918,9 +1643,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['和食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['氷', 'シロップ', '夏'],
-    spices: ['シロップ', '練乳', 'フルーツ']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'アイスクリーム',
@@ -1930,9 +1653,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['簡単', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['アイス', '甘い', '冷たい'],
-    spices: ['バニラ', 'チョコレート', 'ストロベリー']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'ソルベ',
@@ -1942,9 +1663,7 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['果物', 'アイス', 'さっぱり'],
-    spices: ['レモン', 'ミント', 'ライム']
+    healthiness_types: ['ヘルシー']
   },
   {
     name: 'ジェラート',
@@ -1954,50 +1673,58 @@ foods_data = [
     moods: ['リラックス'],
     genres: ['洋食'],
     cooking_styles: ['本格的', '冷たい'],
-    healthiness_types: ['ヘルシー'],
-    tags: ['アイス', '濃厚', 'イタリア'],
-    spices: ['バニラ', 'ピスタチオ', 'ストロベリー']
+    healthiness_types: ['ヘルシー']
   }
 ]
 
 foods_data.each do |food_data|
-  food = Food.find_or_create_by(name: food_data[:name]) do |f|
-    f.category = food_data[:category]
-    f.tags = food_data[:tags]
-    f.spices = food_data[:spices] || []
+  dish = Dish.find_or_create_by(name: food_data[:name])
+  
+  # 気分カテゴリ（ガッツリ/サッパリ）
+  if food_data[:category]
+    category = Category.find_by(name: food_data[:category])
+    CategoryContent.find_or_create_by(dish: dish, category: category, label: "気分") if category
   end
-
-  # 関連データの設定
+  
+  # 時間帯
   food_data[:time_of_days]&.each do |time_name|
-    time_of_day = TimeOfDay.find_by(name: time_name)
-    food.food_time_of_days.find_or_create_by(time_of_day: time_of_day) if time_of_day
+    category = Category.find_by(name: time_name)
+    CategoryContent.find_or_create_by(dish: dish, category: category, label: "時間帯") if category
   end
-
+  
+  # 季節
   food_data[:seasons]&.each do |season_name|
-    season = Season.find_by(name: season_name)
-    food.food_seasons.find_or_create_by(season: season) if season
+    category = Category.find_by(name: season_name)
+    CategoryContent.find_or_create_by(dish: dish, category: category, label: "季節") if category
   end
-
+  
+  # 気分詳細
   food_data[:moods]&.each do |mood_name|
-    mood = Mood.find_by(name: mood_name)
-    food.food_moods.find_or_create_by(mood: mood) if mood
+    category = Category.find_by(name: mood_name)
+    CategoryContent.find_or_create_by(dish: dish, category: category, label: "気分詳細") if category
   end
-
+  
+  # ジャンル
   food_data[:genres]&.each do |genre_name|
-    genre = Genre.find_by(name: genre_name)
-    food.food_genres.find_or_create_by(genre: genre) if genre
+    category = Category.find_by(name: genre_name)
+    CategoryContent.find_or_create_by(dish: dish, category: category, label: "ジャンル") if category
   end
-
+  
+  # 調理スタイル
   food_data[:cooking_styles]&.each do |style_name|
-    cooking_style = CookingStyle.find_by(name: style_name)
-    food.food_cooking_styles.find_or_create_by(cooking_style: cooking_style) if cooking_style
+    category = Category.find_by(name: style_name)
+    CategoryContent.find_or_create_by(dish: dish, category: category, label: "調理スタイル") if category
   end
-
+  
+  # ヘルシーさ
   food_data[:healthiness_types]&.each do |health_name|
-    healthiness_type = HealthinessType.find_by(name: health_name)
-    food.food_healthiness_types.find_or_create_by(healthiness_type: healthiness_type) if healthiness_type
+    category = Category.find_by(name: health_name)
+    CategoryContent.find_or_create_by(dish: dish, category: category, label: "ヘルシーさ") if category
   end
 end
 
-puts "Foods created!"
+puts "Dishes created!"
+puts "Total dishes: #{Dish.count}"
+puts "Total categories: #{Category.count}"
+puts "Total connections: #{CategoryContent.count}"
 puts "Seed data creation completed!"

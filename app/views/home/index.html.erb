@@ -1,41 +1,132 @@
-<center>
-<div class="container">
-  <h1>今日は何を食べたいですか？</h1>
-  <p>まずは基本の気分を選んでください。</p>
-  <p>詳細な条件を指定することも、すぐに検索することもできます。</p>
+<!-- ホーム画面 -->
+<div class="col-lg-8">
+    <div class="text-center mb-5">
+      <div class="display-1 mb-3">🍽️</div>
+      <h1 class="display-4 fw-bold mb-3">今日は何を食べたいですか？</h1>
+      <p class="lead text-muted">
+        「何食べたい？」と聞かれても答えられない…<br>
+        そんな時は、あなたの気分を選ぶだけ。最短5秒で「食べたい」にたどり着けます。
+      </p>
+    </div>
 
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h3>ガッツリ</h3>
-          <p>お腹いっぱい食べたい！</p>
-          <p>ボリューム満点の料理</p>
-          <p>(ex) とんかつ、ステーキ、カレー</p>
-          <p>ガッツリ料理を提案</p>
+    <!-- 基本選択 -->
+    <div class="row g-4 mb-5">
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm hover-shadow">
+          <div class="card-header text-center bg-orange-50">
+            <div class="display-1 mb-2">🔥</div>
+            <h3 class="card-title">ガッツリ</h3>
+            <p class="text-muted mb-0">お腹いっぱい食べたい！<br>ボリューム満点の料理</p>
+          </div>
+          <div class="card-body text-center">
+            <div class="mb-3">
+              <span class="badge bg-orange-100 text-orange-800 me-1">とんかつ</span>
+              <span class="badge bg-orange-100 text-orange-800 me-1">ステーキ</span>
+              <span class="badge bg-orange-100 text-orange-800">カレー</span>
+            </div>
+            <div class="d-grid gap-2">
+              <%= link_to "詳細条件を設定する", "#", class: "btn btn-warning", 
+                  onclick: "showDetailedSearch('ガッツリ')" %>
+              <%= link_to "すぐに検索する", search_dishes_path, 
+                  method: :post, 
+                  params: { category: 'ガッツリ' },
+                  class: "btn btn-outline-warning" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm hover-shadow">
+          <div class="card-header text-center bg-green-50">
+            <div class="display-1 mb-2">🌿</div>
+            <h3 class="card-title">さっぱり</h3>
+            <p class="text-muted mb-0">軽やかに食べたい！<br>あっさりとした料理</p>
+          </div>
+          <div class="card-body text-center">
+            <div class="mb-3">
+              <span class="badge bg-green-100 text-green-800 me-1">そば</span>
+              <span class="badge bg-green-100 text-green-800 me-1">サラダ</span>
+              <span class="badge bg-green-100 text-green-800">スープ</span>
+            </div>
+            <div class="d-grid gap-2">
+              <%= link_to "詳細条件を設定する", "#", class: "btn btn-success", 
+                  onclick: "showDetailedSearch('さっぱり')" %>
+              <%= link_to "すぐに検索する", search_dishes_path, 
+                  method: :post, 
+                  params: { category: 'さっぱり' },
+                  class: "btn btn-outline-success" %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h3>さっぱり</h3>
-          <p>軽やかに食べたい！</p>
-          <p>ヘルシーであっさり！</p>
-          <p>(ex) サラダ、和食、魚料理</p>
-          <p>さっぱり料理を提案</p>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
-<!-- Tailwind CSSの動作確認用セクション -->
-<div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-8 m-4 rounded-lg shadow-lg">
-  <h1 class="text-3xl font-bold mb-4">🎉 Tailwind CSS導入成功！</h1>
-  <p class="text-lg">グラデーション背景が表示されていればTailwindが正常に動作しています</p>
-  <button class="bg-white text-blue-600 px-6 py-2 rounded-full mt-4 hover:bg-gray-100 transition-colors">
-    テストボタン
-  </button>
-</div><div class="container">
-</center>
+<script>
+function showDetailedSearch(category) {
+  document.getElementById('detailed-category').value = category;
+  document.getElementById('selected-category-text').textContent = category;
+  document.getElementById('selected-category-icon').textContent = category === 'ガッツリ' ? '🔥' : '🌿';
+  document.getElementById('detailed-search').style.display = 'block';
+  document.getElementById('detailed-search').scrollIntoView({ behavior: 'smooth' });
+}
+
+function hideDetailedSearch() {
+  document.getElementById('detailed-search').style.display = 'none';
+  // フォームリセット
+  document.querySelector('.detailed-search-form').reset();
+}
+
+function searchBasicOnly() {
+  const category = document.getElementById('detailed-category').value;
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = '<%= search_dishes_path %>';
+  
+  const csrfInput = document.createElement('input');
+  csrfInput.type = 'hidden';
+  csrfInput.name = 'authenticity_token';
+  csrfInput.value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  
+  const categoryInput = document.createElement('input');
+  categoryInput.type = 'hidden';
+  categoryInput.name = 'category';
+  categoryInput.value = category;
+  
+  form.appendChild(csrfInput);
+  form.appendChild(categoryInput);
+  document.body.appendChild(form);
+  form.submit();
+}
+</script>
+
+<style>
+.hover-shadow:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
+}
+
+.bg-orange-50 {
+  background-color: #fff7ed;
+}
+
+.bg-green-50 {
+  background-color: #f0fdf4;
+}
+
+.badge.bg-orange-100 {
+  background-color: #fed7aa !important;
+}
+
+.badge.bg-green-100 {
+  background-color: #dcfce7 !important;
+}
+
+.text-orange-800 {
+  color: #9a3412 !important;
+}
+
+.text-green-800 {
+  color: #166534 !important;
+}
+</style>
