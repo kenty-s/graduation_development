@@ -1,0 +1,84 @@
+<div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+  
+  <p style="text-align: center; font-size: 3rem;">🍽️</p>
+  <p style="text-align: center; color: #666;">あなたの「食べたい」は...</p>
+  <p style="text-align: center; color: #999; font-size: 0.9rem;">📅 <%= Time.current.strftime("%m月%d日 %H:%M") %></p>
+  
+  <p style="text-align: center; font-size: 2.5rem; font-weight: bold; margin: 20px 0;">
+    <%= @dish.name %>
+  </p>
+  
+  <% main_category = @dish.categories.find_by(name: ['ガッツリ', 'サッパリ']) %>
+  <% if main_category %>
+    <p style="text-align: center;">
+      <span style="background: <%= main_category.name == 'ガッツリ' ? '#ffc107' : '#28a745' %>; color: white; padding: 5px 15px; border-radius: 5px;">
+        <%= main_category.name %>系
+      </span>
+    </p>
+  <% end %>
+  
+  <hr style="margin: 30px 0;">
+  
+  <p style="font-weight: bold;">🕐 おすすめタイミング</p>
+  <p>時間帯</p>
+  <p>
+    <% @dish.category_contents.includes(:category).where(label: "時間帯").each do |cc| %>
+      <%= cc.category.name %>　
+    <% end %>
+  </p>
+  
+  <p>季節</p>
+  <p>
+    <% @dish.category_contents.includes(:category).where(label: "季節").each do |cc| %>
+      <%= cc.category.name %>　
+    <% end %>
+  </p>
+  
+  <hr style="margin: 30px 0;">
+  
+  <p style="font-weight: bold;">💭 こんな時にぴったり</p>
+  <p>気分</p>
+  <p>
+    <% @dish.category_contents.includes(:category).where(label: "気分詳細").each do |cc| %>
+      <%= cc.category.name %>　
+    <% end %>
+  </p>
+  
+  <p>ジャンル</p>
+  <p>
+    <% @dish.category_contents.includes(:category).where(label: "ジャンル").each do |cc| %>
+      <%= cc.category.name %>　
+    <% end %>
+  </p>
+  
+  <hr style="margin: 30px 0;">
+  
+  <p style="font-weight: bold;">🍳 調理スタイル</p>
+  <p>
+    <% @dish.category_contents.includes(:category).where(label: "調理スタイル").each do |cc| %>
+      <%= cc.category.name %>　
+    <% end %>
+  </p>
+  
+  <hr style="margin: 30px 0;">
+  
+  <p style="font-weight: bold;">🥗 栄養バランス</p>
+  <p>
+    <% @dish.category_contents.includes(:category).where(label: "ヘルシーさ").each do |cc| %>
+      <%= cc.category.name %>　
+    <% end %>
+  </p>
+  
+  <hr style="margin: 30px 0;">
+  
+  <p style="text-align: center;">
+    <%= link_to "← 最初から選び直す", root_path, style: "margin-right: 20px;" %>
+    <%= button_to "🔄 同じ条件でもう一度", result_path, params: { category: params[:category] } %>
+  </p>
+  
+  <hr style="margin: 30px 0;">
+  
+  <p style="font-weight: bold;">📌 関連情報</p>
+  <p style="font-size: 0.9rem;">会員登録すると、過去に検索された料理の履歴を確認できます。<br>お気に入りの料理を見つけやすくなります。</p>
+
+</div>
