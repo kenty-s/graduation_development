@@ -19393,3 +19393,59 @@ Cannot render console from 172.18.0.1! Allowed networks: 127.0.0.0/127.255.255.2
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
+Generating image variants require the image_processing gem. Please add `gem 'image_processing', '~> 1.2'` to your Gemfile.
+Started GET "/" for 172.18.0.1 at 2025-10-16 05:17:22 +0900
+Cannot render console from 172.18.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Load (3.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='GraduationDevelopment'*/[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 9.2ms | GC: 0.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 16.5ms | GC: 1.4ms)
+Completed 200 OK in 264ms (Views: 20.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 50.8ms)
+
+
+Started GET "/favicon.ico" for 172.18.0.1 at 2025-10-16 05:17:22 +0900
+Cannot render console from 172.18.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started POST "/result" for 172.18.0.1 at 2025-10-16 05:17:25 +0900
+Cannot render console from 172.18.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by DishesController#result as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "category"=>"ガッツリ"}
+  [1m[36mDish Load (12.4ms)[0m  [1m[34mSELECT "dishes".* FROM "dishes" INNER JOIN "category_contents" ON "category_contents"."dish_id" = "dishes"."id" INNER JOIN "categories" ON "categories"."id" = "category_contents"."category_id" WHERE "categories"."name" = 'ガッツリ' ORDER BY RANDOM() LIMIT 1 /*action='result',application='GraduationDevelopment',controller='dishes'*/[0m
+  ↳ app/models/dish.rb:12:in `random_by_category'
+  Rendering layout layouts/application.html.erb
+  Rendering dishes/result.html.erb within layouts/application
+  [1m[36mCategory Load (0.9ms)[0m  [1m[34mSELECT "categories".* FROM "categories" INNER JOIN "category_contents" ON "categories"."id" = "category_contents"."category_id" WHERE "category_contents"."dish_id" = 57 AND "categories"."name" IN ('ガッツリ', 'サッパリ') LIMIT 1 /*action='result',application='GraduationDevelopment',controller='dishes'*/[0m
+  ↳ app/views/dishes/result.html.erb:11
+  [1m[36mCategoryContent Load (0.8ms)[0m  [1m[34mSELECT "category_contents".* FROM "category_contents" WHERE "category_contents"."dish_id" = 57 AND "category_contents"."label" = '時間帯' /*action='result',application='GraduationDevelopment',controller='dishes'*/[0m
+  ↳ app/views/dishes/result.html.erb:25
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = 5 /*action='result',application='GraduationDevelopment',controller='dishes'*/[0m
+  ↳ app/views/dishes/result.html.erb:25
+  [1m[36mCategoryContent Load (1.4ms)[0m  [1m[34mSELECT "category_contents".* FROM "category_contents" WHERE "category_contents"."dish_id" = 57 AND "category_contents"."label" = '季節' /*action='result',application='GraduationDevelopment',controller='dishes'*/[0m
+  ↳ app/views/dishes/result.html.erb:32
+  [1m[36mCategory Load (0.9ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = 8 /*action='result',application='GraduationDevelopment',controller='dishes'*/[0m
+  ↳ app/views/dishes/result.html.erb:32
+  [1m[36mCategoryContent Load (0.9ms)[0m  [1m[34mSELECT "category_contents".* FROM "category_contents" WHERE "category_contents"."dish_id" = 57 AND "category_contents"."label" = '気分詳細' /*action='result',application='GraduationDevelopment',controller='dishes'*/[0m
+  ↳ app/views/dishes/result.html.erb:42
+  [1m[36mCategory Load (1.9ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = 12 /*action='result',application='GraduationDevelopment',controller='dishes'*/[0m
+  ↳ app/views/dishes/result.html.erb:42
+  [1m[36mCategoryContent Load (1.1ms)[0m  [1m[34mSELECT "category_contents".* FROM "category_contents" WHERE "category_contents"."dish_id" = 57 AND "category_contents"."label" = 'ジャンル' /*action='result',application='GraduationDevelopment',controller='dishes'*/[0m
+  ↳ app/views/dishes/result.html.erb:49
+  [1m[36mCategory Load (0.9ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = 19 /*action='result',application='GraduationDevelopment',controller='dishes'*/[0m
+  ↳ app/views/dishes/result.html.erb:49
+  [1m[36mCategoryContent Load (1.0ms)[0m  [1m[34mSELECT "category_contents".* FROM "category_contents" WHERE "category_contents"."dish_id" = 57 AND "category_contents"."label" = '調理スタイル' /*action='result',application='GraduationDevelopment',controller='dishes'*/[0m
+  ↳ app/views/dishes/result.html.erb:58
+  [1m[36mCategory Load (1.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" IN (21, 23) /*action='result',application='GraduationDevelopment',controller='dishes'*/[0m
+  ↳ app/views/dishes/result.html.erb:58
+  [1m[36mCategoryContent Load (0.8ms)[0m  [1m[34mSELECT "category_contents".* FROM "category_contents" WHERE "category_contents"."dish_id" = 57 AND "category_contents"."label" = 'ヘルシーさ' /*action='result',application='GraduationDevelopment',controller='dishes'*/[0m
+  ↳ app/views/dishes/result.html.erb:67
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = 27 /*action='result',application='GraduationDevelopment',controller='dishes'*/[0m
+  ↳ app/views/dishes/result.html.erb:67
+  Rendered dishes/result.html.erb within layouts/application (Duration: 209.6ms | GC: 17.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 211.2ms | GC: 17.4ms)
+Completed 200 OK in 363ms (Views: 194.8ms | ActiveRecord: 82.9ms (14 queries, 0 cached) | GC: 17.4ms)
+
+
