@@ -1,20 +1,36 @@
 Rails.application.routes.draw do
-  get "search_result/show"
-  get "search/multiple_conditions"
-  root 'home#index'
-  get "home/index"
-  get 'search_dishes', to: 'dishes#search'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # ========================================
+  # MVP機能（現在実装中）
+  # ========================================
   
+  # ホーム（ガッツリ/サッパリのボタンがある）
+  root 'home#index'
+  
+  # 検索結果（料理1件をランダム表示）
+  post 'result', to: 'dishes#result'
+  
+  
+  # ========================================
+  # MVP後の拡張機能（ルーティングのみ先行定義）
+  # ========================================
+  
+  # 詳細条件検索
+  # get 'search/multiple_conditions', to: 'search#multiple_conditions'
+  # post 'search/advanced_result', to: 'search#advanced_result'
+  
+  # ユーザー認証（Devise導入後に自動生成されるが、先に定義）
+  # devise_for :users
+  
+  # 検索履歴（ログインユーザーのみ）
+  # resources :search_histories, only: [:index, :destroy]
+  
+  # SNS投稿（X投稿機能）
+  # post 'share/twitter', to: 'share#twitter'
+  
+  # 管理者画面
+  # namespace :admin do
+  #   root 'dashboard#index'
+  #   resources :dishes
+  #   resources :categories
+  # end
 end

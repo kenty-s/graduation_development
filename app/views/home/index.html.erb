@@ -14,7 +14,7 @@
       <div class="col-md-6">
         <div class="card h-100 shadow-sm hover-shadow">
           <div class="card-header text-center bg-orange-50">
-            <div class="display-1 mb-2">🔥</div>
+            <div class="display-1 mb-2">🍖</div>
             <h3 class="card-title">ガッツリ</h3>
             <p class="text-muted mb-0">お腹いっぱい食べたい！<br>ボリューム満点の料理</p>
           </div>
@@ -27,10 +27,10 @@
             <div class="d-grid gap-2">
               <%= link_to "詳細条件を設定する", "#", class: "btn btn-warning", 
                   onclick: "showDetailedSearch('ガッツリ')" %>
-              <%= link_to "すぐに検索する", search_dishes_path, 
-                  method: :post, 
+              <%= button_to "この気分で検索", result_path, 
                   params: { category: 'ガッツリ' },
-                  class: "btn btn-outline-warning" %>
+                  class: "btn btn-warning w-50 fw-bold",
+                  style: "font-size: 1.3rem; padding: 15px 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" %>
             </div>
           </div>
         </div>
@@ -39,8 +39,8 @@
       <div class="col-md-6">
         <div class="card h-100 shadow-sm hover-shadow">
           <div class="card-header text-center bg-green-50">
-            <div class="display-1 mb-2">🌿</div>
-            <h3 class="card-title">さっぱり</h3>
+            <div class="display-1 mb-2">🥗</div>
+            <h3 class="card-title">サッパリ</h3>
             <p class="text-muted mb-0">軽やかに食べたい！<br>あっさりとした料理</p>
           </div>
           <div class="card-body text-center">
@@ -51,11 +51,11 @@
             </div>
             <div class="d-grid gap-2">
               <%= link_to "詳細条件を設定する", "#", class: "btn btn-success", 
-                  onclick: "showDetailedSearch('さっぱり')" %>
-              <%= link_to "すぐに検索する", search_dishes_path, 
-                  method: :post, 
-                  params: { category: 'さっぱり' },
-                  class: "btn btn-outline-success" %>
+                  onclick: "showDetailedSearch('サッパリ')" %>
+              <%= button_to "この気分で検索", result_path, 
+                  params: { category: 'サッパリ' },
+                  class: "btn btn-success w-50 fw-bold",
+                  style: "font-size: 1.3rem; padding: 15px 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" %>
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@ function searchBasicOnly() {
   const category = document.getElementById('detailed-category').value;
   const form = document.createElement('form');
   form.method = 'POST';
-  form.action = '<%= search_dishes_path %>';
+  form.action = '<%= result_path %>';
   
   const csrfInput = document.createElement('input');
   csrfInput.type = 'hidden';
