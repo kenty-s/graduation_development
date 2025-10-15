@@ -29,6 +29,10 @@ Rails.application.configure do
       end
     end
   }
+  
+  config.hosts << "graduation-development.onrender.com"
+  config.action_controller.asset_host = "https://graduation-development.onrender.com"
+
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
