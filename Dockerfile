@@ -36,13 +36,10 @@ RUN apt-get update -qq && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # 開発に必要なパッケージをインストール
-RUN apt-get update -qq && apt-get install -y \
-  build-essential \
-  pkg-config \
-  libssl-dev \
-  libpq-dev \
-  curl \
-  vim
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install --global yarn && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install application gems
 COPY Gemfile Gemfile.lock vendor ./
@@ -58,7 +55,8 @@ COPY . .
 RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+ENV SECRET_KEY_BASE=dummy
+RUN RAILS_ENV=production ./bin/rails assets:precompile
 
 
 
