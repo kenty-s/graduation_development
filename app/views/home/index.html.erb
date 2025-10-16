@@ -1,115 +1,83 @@
 <!-- ホーム画面 -->
 <div class="col-lg-8">
-    <div class="text-center mb-5">
-      <div class="display-1 mb-3">🍽️</div>
-      <h1 class="display-4 fw-bold mb-3">今日は何を食べたいですか？</h1>
-      <p class="lead text-muted">
-        「何食べたい？」と聞かれても答えられない…<br>
-        そんな時は、あなたの気分を選ぶだけ。最短5秒で「食べたい」にたどり着けます。
-      </p>
-    </div>
+  <div class="text-center mb-5">
+    <div class="display-1 mb-3">🍽️</div>
+    <h1 class="display-4 fw-bold mb-3">今日は何を食べたいですか？</h1>
+    <p class="lead text-muted">
+      「何食べたい？」と聞かれても答えられない…<br>
+      そんな時は、あなたの気分を選ぶだけ。最短5秒で「食べたい」にたどり着けます。
+    </p>
+  </div>
 
-    <!-- 基本選択 -->
-    <div class="row g-4 mb-5">
-      <div class="col-md-6">
-        <div class="card h-100 shadow-sm hover-shadow">
-          <div class="card-header text-center bg-orange-50">
-            <div class="display-1 mb-2">🍖</div>
-            <h3 class="card-title">ガッツリ</h3>
-            <p class="text-muted mb-0">お腹いっぱい食べたい！<br>ボリューム満点の料理</p>
+  <!-- 基本選択 -->
+  <div class="row g-4 mb-5">
+
+    <!-- ガッツリ -->
+    <div class="col-md-6">
+      <div class="card h-100 shadow-sm hover-shadow">
+        <div class="card-header text-center bg-orange-50">
+          <div class="display-1 mb-2">🍖</div>
+          <h3 class="card-title">ガッツリ</h3>
+          <p class="text-muted mb-0">お腹いっぱい食べたい！<br>ボリューム満点の料理</p>
+        </div>
+        <div class="card-body text-center">
+          <div class="mb-3">
+            <span class="badge bg-orange-100 text-orange-800 me-1">とんかつ</span>
+            <span class="badge bg-orange-100 text-orange-800 me-1">ステーキ</span>
+            <span class="badge bg-orange-100 text-orange-800">カレー</span>
           </div>
-          <div class="card-body text-center">
-            <div class="mb-3">
-              <span class="badge bg-orange-100 text-orange-800 me-1">とんかつ</span>
-              <span class="badge bg-orange-100 text-orange-800 me-1">ステーキ</span>
-              <span class="badge bg-orange-100 text-orange-800">カレー</span>
-            </div>
-            <div class="d-grid gap-2">
-              <%# 詳細条件は一旦無効化 %>
-              <%= link_to "詳細条件を設定する", "#", 
-                  class: "btn btn-warning disabled",
-            onclick: "return false;" %>
-  
-              <%= button_to "この気分で検索", result_path, 
-                  params: { category: 'ガッツリ' },
-                  data: { turbo: false },  # ← これを追加！
-                  method: :post,
+
+          <div class="d-grid gap-2">
+            <%= link_to "詳細条件を設定する", "#", 
+                class: "btn btn-warning disabled",
+                onclick: "return false;" %>
+
+            <%= form_with url: result_path, method: :post, local: true do |form| %>
+              <%= form.hidden_field :category, value: "ガッツリ" %>
+              <%= form.submit "この気分で検索", 
                   class: "btn btn-warning w-50 fw-bold",
                   style: "font-size: 1.3rem; padding: 15px 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" %>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="card h-100 shadow-sm hover-shadow">
-          <div class="card-header text-center bg-green-50">
-            <div class="display-1 mb-2">🥗</div>
-            <h3 class="card-title">サッパリ</h3>
-            <p class="text-muted mb-0">軽やかに食べたい！<br>あっさりとした料理</p>
-          </div>
-          <div class="card-body text-center">
-            <div class="mb-3">
-              <span class="badge bg-green-100 text-green-800 me-1">そば</span>
-              <span class="badge bg-green-100 text-green-800 me-1">サラダ</span>
-              <span class="badge bg-green-100 text-green-800">スープ</span>
-            </div>
-            <div class="d-grid gap-2">
-              <%= link_to "詳細条件を設定する", "#", 
-                  class: "btn btn-success disabled",
-                  onclick: "return false;" %>
-  
-              <%= button_to "この気分で検索", result_path, 
-                  params: { category: 'サッパリ' },
-                  data: { turbo: false },  # ← これを追加！
-                  method: :post,
-                  class: "btn btn-success w-50 fw-bold",
-                  style: "font-size: 1.3rem; padding: 15px 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" %>
-            </div>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- サッパリ -->
+    <div class="col-md-6">
+      <div class="card h-100 shadow-sm hover-shadow">
+        <div class="card-header text-center bg-green-50">
+          <div class="display-1 mb-2">🥗</div>
+          <h3 class="card-title">サッパリ</h3>
+          <p class="text-muted mb-0">軽やかに食べたい！<br>あっさりとした料理</p>
+        </div>
+        <div class="card-body text-center">
+          <div class="mb-3">
+            <span class="badge bg-green-100 text-green-800 me-1">そば</span>
+            <span class="badge bg-green-100 text-green-800 me-1">サラダ</span>
+            <span class="badge bg-green-100 text-green-800">スープ</span>
+          </div>
+
+          <div class="d-grid gap-2">
+            <%= link_to "詳細条件を設定する", "#", 
+                class: "btn btn-success disabled",
+                onclick: "return false;" %>
+
+            <%= form_with url: result_path, method: :post, local: true do |form| %>
+              <%= form.hidden_field :category, value: "サッパリ" %>
+              <%= form.submit "この気分で検索", 
+                  class: "btn btn-success w-50 fw-bold",
+                  style: "font-size: 1.3rem; padding: 15px 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<script>
-function showDetailedSearch(category) {
-  document.getElementById('detailed-category').value = category;
-  document.getElementById('selected-category-text').textContent = category;
-  document.getElementById('selected-category-icon').textContent = category === 'ガッツリ' ? '🔥' : '🌿';
-  document.getElementById('detailed-search').style.display = 'block';
-  document.getElementById('detailed-search').scrollIntoView({ behavior: 'smooth' });
-}
-
-function hideDetailedSearch() {
-  document.getElementById('detailed-search').style.display = 'none';
-  // フォームリセット
-  document.querySelector('.detailed-search-form').reset();
-}
-
-function searchBasicOnly() {
-  const category = document.getElementById('detailed-category').value;
-  const form = document.createElement('form');
-  form.method = 'POST';
-  form.action = '<%= result_path %>';
-  
-  const csrfInput = document.createElement('input');
-  csrfInput.type = 'hidden';
-  csrfInput.name = 'authenticity_token';
-  csrfInput.value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-  
-  const categoryInput = document.createElement('input');
-  categoryInput.type = 'hidden';
-  categoryInput.name = 'category';
-  categoryInput.value = category;
-  
-  form.appendChild(csrfInput);
-  form.appendChild(categoryInput);
-  document.body.appendChild(form);
-  form.submit();
-}
-</script>
-
+<!-- CSS -->
 <style>
 .hover-shadow:hover {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
