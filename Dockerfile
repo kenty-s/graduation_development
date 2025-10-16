@@ -55,8 +55,10 @@ COPY . .
 RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-ARG SECRET_KEY_BASE
-RUN SECRET_KEY_BASE=${SECRET_KEY_BASE} RAILS_ENV=production ./bin/rails assets:precompile
+RUN RAILS_ENV=production \
+    SECRET_KEY_BASE=dummy \
+    RAILS_MASTER_KEY=dummy \
+    ./bin/rails assets:precompile
 
 # Final stage for app image
 FROM base
