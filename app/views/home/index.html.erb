@@ -25,10 +25,15 @@
               <span class="badge bg-orange-100 text-orange-800">カレー</span>
             </div>
             <div class="d-grid gap-2">
-              <%= link_to "詳細条件を設定する", "#", class: "btn btn-warning", 
-                  onclick: "showDetailedSearch('ガッツリ')" %>
+              <%# 詳細条件は一旦無効化 %>
+              <%= link_to "詳細条件を設定する", "#", 
+                  class: "btn btn-warning disabled",
+            onclick: "return false;" %>
+  
               <%= button_to "この気分で検索", result_path, 
                   params: { category: 'ガッツリ' },
+                  data: { turbo: false },  # ← これを追加！
+                  method: :post,
                   class: "btn btn-warning w-50 fw-bold",
                   style: "font-size: 1.3rem; padding: 15px 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" %>
             </div>
@@ -50,10 +55,14 @@
               <span class="badge bg-green-100 text-green-800">スープ</span>
             </div>
             <div class="d-grid gap-2">
-              <%= link_to "詳細条件を設定する", "#", class: "btn btn-success", 
-                  onclick: "showDetailedSearch('サッパリ')" %>
+              <%= link_to "詳細条件を設定する", "#", 
+                  class: "btn btn-success disabled",
+                  onclick: "return false;" %>
+  
               <%= button_to "この気分で検索", result_path, 
                   params: { category: 'サッパリ' },
+                  data: { turbo: false },  # ← これを追加！
+                  method: :post,
                   class: "btn btn-success w-50 fw-bold",
                   style: "font-size: 1.3rem; padding: 15px 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" %>
             </div>
