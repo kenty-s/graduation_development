@@ -4,37 +4,41 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: graduation_development_development
+      POSTGRES_DB: graduation_development
+    volumes:
+      - db_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d graduation_development_development -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
   web:
     build:
       context: .
-      dockerfile: Dockerfile.dev
-    user: "1000:1000"  # ✅ ここ！ depends_on の外・webサービス直下に
-    command: bash -c "rm -f tmp/pids/server.pid && bin/rails server -b 0.0.0.0"
-    tty: true
-    stdin_open: true
+      dockerfile: Dockerfile.dev # 開発用 Dockerfile
+    environment:
+      RAILS_ENV: development
     volumes:
       - .:/app
-      - bundle_data:/usr/local/bundle:cached
-      - node_modules:/app/node_modules
-    environment:
-      TZ: Asia/Tokyo
-      RAILS_ENV: development
+      - bundle_data:/app/vendor/bundle
     ports:
       - "3000:3000"
     depends_on:
-      db:
-        condition: service_healthy
+      - db
+    command: >
+      bash -c "bundle check || bundle install && bin/rails server -b 0.0.0.0"
+
+  web_prod:
+    build:
+      context: .
+      dockerfile: Dockerfile # 本番用 Dockerfile
+    env_file:
+      - .env   # ← これを追加！
+    environment:
+      RAILS_ENV: production
+    ports:
+      - "80:80"
+    depends_on:
+      - db
 
 volumes:
+  db_data:
   bundle_data:
-  postgresql_data:
-  node_modules:

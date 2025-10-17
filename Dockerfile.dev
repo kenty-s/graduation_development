@@ -1,44 +1,45 @@
-# ベースイメージ
 FROM ruby:3.2.2
 
-# 環境変数
 ENV LANG=C.UTF-8
 ENV TZ=Asia/Tokyo
 ENV RAILS_ENV=development
+ENV BUNDLE_PATH=/app/vendor/bundle
+ENV BUNDLE_BIN=/app/vendor/bundle/bin
+ENV PATH=$BUNDLE_BIN:$PATH
 
-# 必要パッケージをインストール
 RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends \
-    ca-certificates \
-    curl \
-    gnupg \
-    postgresql-client \
-    vim \
-    nano \
-    build-essential \
-    nodejs \
-    npm && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+        build-essential \
+        curl \
+        gnupg \
+        postgresql-client \
+        libpq-dev \
+        nodejs \
+        npm \
+        libssl-dev \
+        libffi-dev \
+        pkg-config && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# 一般ユーザーを作成
+# bundlerをrootでインストール
+RUN gem install bundler
+
 RUN useradd -m appuser
 
-# 作業ディレクトリ
 WORKDIR /app
 
-# Gemfileをコピー＆インストール
-COPY Gemfile Gemfile.lock ./
-RUN gem install bundler && bundle install
+# vendorディレクトリを事前作成して権限付与
+RUN mkdir -p /app/vendor/bundle && \
+    chown -R appuser:appuser /app
 
-# アプリ全体をコピー
-COPY . .
+COPY --chown=appuser:appuser Gemfile Gemfile.lock ./
 
-# 所有者をappuserに変更（bind mount対策）
-RUN chown -R appuser:appuser /app
-
-# 一般ユーザーで実行
+# ここでユーザー切り替え
 USER appuser
 
-# Railsサーバー起動
+# bundle installのみappuserで実行
+RUN bundle install --jobs 4 --retry 3
+
+COPY --chown=appuser:appuser . .
+
 CMD ["rails", "server", "-b", "0.0.0.0"]
