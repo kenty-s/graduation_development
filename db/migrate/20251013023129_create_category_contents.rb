@@ -1,4 +1,4 @@
-class CreateCategoryContents < ActiveRecord::Migration[8.1]
+class CreateCategoryContents < ActiveRecord::Migration[7.1]
   def change
     create_table :category_contents do |t|
       t.references :dish, null: false, foreign_key: true
