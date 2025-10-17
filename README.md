@@ -110,11 +110,12 @@ MVP時点では「自宅で作る料理のマンネリ解消」を主目的と�
 
 ### 本リリース（MVP）
 * PostgreSQL 15.14
-* rails 8.1.0
+* rails 7.1.3
 * ruby 3.2.3
 * `gem 'rails', '7.0.8.7'`
 * `gem "ransack"`　- 検索機能（1件ランダム出力）
 * `gem "tailwindcss-rails", "~> 2.7"` - UI作成
+* `gem 'image_processing', '~> 1.2'` - 画像処理
 
 ### 本リリース以後の拡張機能
 * `gem 'draper', '4.0.2'` - ビュー用データ整形
