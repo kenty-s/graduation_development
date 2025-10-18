@@ -3,6 +3,8 @@ FROM ruby:3.2.0
 RUN apt-get update -qq && \
     apt-get install -y nodejs postgresql-client
 
+ENV RAILS_ENV=production
+
 WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
