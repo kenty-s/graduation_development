@@ -34,7 +34,7 @@
 
             <%= form_with url: result_path, method: :post, local: true do |form| %>
               <%= form.hidden_field :category, value: "ガッツリ" %>
-              <%= form.submit "この気分で検索", 
+              <%= form.submit "この気分で検索",
                   class: "btn btn-warning w-50 fw-bold",
                   style: "font-size: 1.3rem; padding: 15px 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" %>
             <% end %>
