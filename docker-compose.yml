@@ -13,7 +13,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile.dev # 開発用 Dockerfile
+      dockerfile: Dockerfile.dev
     environment:
       RAILS_ENV: development
     volumes:
@@ -24,12 +24,15 @@ services:
     depends_on:
       - db
     command: >
-      bash -c "bundle check || bundle install && bin/rails server -b 0.0.0.0"
+      bash -c "bundle check || bundle install && 
+      bin/rails tailwindcss:build && 
+      bin/rails tailwindcss:watch & 
+      bin/rails server -b 0.0.0.0"
 
   web_prod:
     build:
       context: .
-      dockerfile: Dockerfile # 本番用 Dockerfile
+      dockerfile: Dockerfile
     env_file:
       - .env
     environment:

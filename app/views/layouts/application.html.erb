@@ -7,10 +7,11 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application" %>
+    <%= favicon_link_tag 'favicon.png' %>
   </head>
   <body>
     <%= render 'shared/header' %>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main style="width: 100%; margin-top: 7rem;">
       <%= yield %>
     </main>
     <%= render 'shared/footer' %>
