@@ -134,31 +134,24 @@ MVP時点では「自宅で作る料理のマンネリ解消」を主目的と�
 > シェアボタンのみであればGem不要。API連携で自動投稿等を行う場合は`gem 'twitter'`を利用予定。どちらを採用するかは今後検討。
 > 投稿内容(検討中)`○○を食べたいんだけど、一緒にどう？` - 誰かと一緒に食べたいけど、食事の主導権を握られたくない時に有効
 
-### 技術一覧(追記中)
+### 技術一覧
 
-フロントエンドフレームワーク
+- フロントエンドフレームワーク
 
-フロントエンド言語
+- フロントエンド言語
+JavaScript
 
-![alt text](https___img.shields.io_badge_-JavaScript-000000.svg)
+- バックエンドフレームワーク
+Ruby on Rails
 
-バックエンドフレームワーク
+- バックエンド言語
+Ruby
 
-![alt text](https___img.shields.io_badge_-Rails-CC0000.svg)
+- ミドルウェア
 
-バックエンド言語
+- インフラ
+Docker
 
-![alt text](https___img.shields.io_badge_-Ruby-CC342D.svg)
-
-ミドルウェア
-
-インフラ
-
-![alt text](https___img.shields.io_badge_-Docker-1488C6.svg)
-
-その他
-
-(参考)https://qiita.com/shun198/items/c983c713452c041ef787
 
 ### 画面遷移図
 Figma：https://www.figma.com/board/rKWAuSJmOgPh76h9pCJSRf/%E7%84%A1%E9%A1%8C?node-id=12-666&t=QiY7fQXiWOO5L0Vn-1
@@ -208,8 +201,8 @@ Figma：https://www.figma.com/board/rKWAuSJmOgPh76h9pCJSRf/%E7%84%A1%E9%A1%8C?no
 ユーザー登録により、履歴の閲覧削除も可能
 
 ### MVPで実装する予定の機能
-- [○] ユーザー登録機能
-- [○] ログイン機能
+- [×] ユーザー登録機能
+- [×] ログイン機能
 - [×] 記事投稿機能（画像投稿含む）
 - [×] 記事閲覧機能（未ログインでも閲覧可能）
 - [×] 記事編集機能
