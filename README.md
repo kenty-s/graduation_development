@@ -1,4 +1,5 @@
 # サービス名
+(修正案) キブンメシ
 あなたの「食べたい」を教えます。~ 何食べたい？の答えがここに ~
 
 ## サービス概要
@@ -112,10 +113,34 @@ MVP時点では「自宅で作る料理のマンネリ解消」を主目的と�
 * PostgreSQL 15.14
 * rails 7.1.3
 * ruby 3.2.3
-* `gem 'rails', '7.0.8.7'`
-* `gem "ransack"`　- 検索機能（1件ランダム出力）
-* `gem "tailwindcss-rails", "~> 2.7"` - UI作成
-* `gem 'image_processing', '~> 1.2'` - 画像処理
+* `gem 'rails', '~> 7.1.3'` - Railsフレームワーク本体
+* `gem 'propshaft'` - アセット（CSS/JS/画像）を管理するツール
+* `gem 'pg', '~> 1.1'` - PostgreSQLデータベースに接続
+* `gem 'puma', '>= 5.0'` - Railsサーバー（Webサーバー）
+* `gem 'importmap-rails'` - JavaScriptをnpmなしで管理
+* `gem 'turbo-rails'` - ページ遷移を高速化（Hotwire）
+* `gem 'stimulus-rails'` - 軽量なJavaScriptフレームワーク
+* `gem 'jbuilder'` - JSON形式のレスポンスを作成
+* `gem 'ransack', '~> 4.0'` - 検索機能を簡単に実装
+* `gem 'rails-i18n', '~> 7.0.0'` - Railsのエラーメッセージを日本語化
+* `gem 'enum_help', '0.0.20'` - enumを日本語で表示
+* `gem 'tzinfo-data'` - Windowsでタイムゾーン情報を扱う
+* `gem 'solid_cache'` - キャッシュをDBで管理
+* `gem 'solid_queue'` - バックグラウンドジョブをDBで管理
+* `gem 'solid_cable'` - WebSocketをDBで管理
+* `gem 'bootsnap'` - Railsの起動を高速化
+* `gem 'kamal'` - Docker環境にデプロイするツール
+* `gem 'thruster'` - Pumaの性能を向上
+* `gem 'image_processing', '~> 1.2'` - 画像のリサイズや変換
+* `gem 'impressionist'` - ページビュー（PV）数を計測・記録
+* `gem 'debug'` - デバッグツール（binding.pry的な）
+* `gem 'bundler-audit'` - gemのセキュリティ脆弱性をチェック
+* `gem 'brakeman'` - Railsコードのセキュリティ診断
+* `gem 'rubocop-rails-omakase'` - コードの書き方をチェック（Linter）
+* `gem 'web-console'` - エラー画面でコンソール実行できる
+* `gem 'capybara'` - システムテスト（ブラウザ操作）
+* `gem 'selenium-webdriver'` - Capybaraでブラウザを動かすドライバ
+* `gem 'tailwindcss-rails', '~> 4.3'` - TailwindCSSをRailsで使う
 
 ### 本リリース以後の拡張機能
 * `gem 'draper', '4.0.2'` - ビュー用データ整形
