@@ -8,3 +8,23 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+ /* ヘッダーのボタン間隔 */
+.gap-2 {
+  gap: 0.5rem;
+}
+
+/* ログインボタンのホバー効果 */
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-warning:hover {
+  background-color: #e67e22;
+}
+
+/* ログアウトボタンのスタイル調整 */
+button[formmethod="delete"] {
+  border: none;
+  cursor: pointer;
+}

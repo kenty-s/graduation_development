@@ -1,4 +1,4 @@
-services:
+services: 
   db:
     image: postgres:15
     environment:
@@ -16,6 +16,8 @@ services:
       dockerfile: Dockerfile.dev
     environment:
       RAILS_ENV: development
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
     volumes:
       - .:/app
       - bundle_data:/app/vendor/bundle
@@ -23,12 +25,7 @@ services:
       - "3000:3000"
     depends_on:
       - db
-    command: >
-      bash -c "rm -f /app/tmp/pids/server.pid &&
-      bundle check || bundle install &&
-      bin/rails tailwindcss:build &&
-      bin/rails tailwindcss:watch &
-      bin/rails server -b 0.0.0.0"
+    command: bin/rails server -b 0.0.0.0
 
   web_prod:
     build:

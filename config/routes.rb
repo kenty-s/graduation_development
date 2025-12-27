@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
   # ========================================
   # MVP機能（現在実装中）
   # ========================================
@@ -17,9 +19,6 @@ Rails.application.routes.draw do
   # 詳細条件検索
   # get 'search/multiple_conditions', to: 'search#multiple_conditions'
   # post 'search/advanced_result', to: 'search#advanced_result'
-  
-  # ユーザー認証（Devise導入後に自動生成されるが、先に定義）
-  # devise_for :users
   
   # 検索履歴（ログインユーザーのみ）
   # resources :search_histories, only: [:index, :destroy]

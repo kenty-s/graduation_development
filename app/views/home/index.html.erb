@@ -7,6 +7,13 @@
       「何食べたい？」と聞かれても答えられない…<br>
       そんな時は、あなたの気分を選ぶだけ。最短5秒で「食べたい」にたどり着けます。
     </p>
+    <div class="mt-6 flex justify-center">
+      <%= button_to "Googleでログイン",
+          user_google_oauth2_omniauth_authorize_path,
+          method: :post,
+          data: { turbo: false },
+          class: "px-6 py-3 bg-red-500 text-white font-bold rounded-lg hover:bg-red-600 transition" %>
+    </div>
   </div>
 
   <!-- 基本選択 -->
