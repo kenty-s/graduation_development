@@ -31,6 +31,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+        GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
     env_file:
       - .env
     environment:
