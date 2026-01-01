@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   # ========================================
   
   # 詳細条件検索
-  # get 'search/multiple_conditions', to: 'search#multiple_conditions'
+  get 'search/multiple_conditions', to: 'search#multiple_conditions', as: :advanced_search
   # post 'search/advanced_result', to: 'search#advanced_result'
   
   # 検索履歴（ログインユーザーのみ）

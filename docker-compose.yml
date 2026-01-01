@@ -14,8 +14,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    env_file:
-      - .env
     environment:
       RAILS_ENV: development
       GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
@@ -29,18 +27,21 @@ services:
       - db
     command: bin/rails server -b 0.0.0.0
 
-  web_prod:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    environment:
-      RAILS_ENV: production
-      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
-      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
-    ports:
-      - "80:80"
-    depends_on:
-      - db
+    web_prod:
+      build:
+        context: .
+        dockerfile: Dockerfile
+        args:
+          GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+          GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      env_file:
+        - .env
+      environment:
+        RAILS_ENV: production
+      ports:
+        - "80:80"
+      depends_on:
+        - db
 
 volumes:
   db_data:

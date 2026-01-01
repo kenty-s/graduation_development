@@ -178,7 +178,16 @@ foods_data = [
 ]
 
 foods_data.each do |food_data|
-  dish = Dish.find_or_create_by(name: food_data[:name])
+  dish = Dish.find_or_initialize_by(name: food_data[:name])
+  dish.assign_attributes(
+    time_of_days:      food_data[:time_of_days],
+    seasons:           food_data[:seasons],
+    moods:             food_data[:moods],
+    genres:            food_data[:genres],
+    cooking_styles:    food_data[:cooking_styles],
+    healthiness_types: food_data[:healthiness_types]
+  )
+  dish.save!
   
   # 気分カテゴリ（ガッツリ/サッパリ）
   if food_data[:category]

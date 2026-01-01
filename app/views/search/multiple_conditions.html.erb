@@ -1,5 +1,83 @@
-<!-- 複数条件検索 -->
-<div>
-  <h1 class="font-bold text-4xl">Search#multiple_conditions</h1>
-  <p>Find me in app/views/search/multiple_conditions.html.erb</p>
+<div class="max-w-6xl mx-auto px-4 py-10 space-y-8">
+  <div class="text-center space-y-2">
+
+  <% categories      = ['ガッツリ', 'サッパリ'] %>
+  <% time_of_days    = ['朝', '昼', '夜', 'おやつ'] %>
+  <% seasons         = ['春', '夏', '秋', '冬'] %>
+  <% genres          = ['和食', '洋食', '中華', 'エスニック', 'その他'] %>
+  <% common_option_classes = "rounded-xl px-4 py-3 text-center border border-gray-300 bg-white text-gray-700 shadow-sm transition hover:shadow-md hover:border-gray-400 peer-checked:border-orange-500 peer-checked:bg-orange-50 peer-checked:text-orange-700 peer-checked:shadow peer-checked:ring-2 peer-checked:ring-orange-200" %>
+
+  <%= form_with url: advanced_search_path, method: :get, local: true, data: { turbo: false }, class: "space-y-6" do |f| %>
+    <div class="space-y-3">
+      <div class="flex items-center gap-2 text-lg font-semibold">
+        <span class="text-gray-700">カテゴリ</span>
+        <span class="text-sm text-gray-500">（ひとつ選択）</span>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <% categories.each do |cat| %>
+          <label class="cursor-pointer">
+            <%= f.radio_button :category, cat, class: "hidden peer" %>
+            <div class="<%= common_option_classes %>">
+              <span class="block font-medium peer-checked:font-semibold"><%= cat %></span>
+            </div>
+          </label>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="space-y-3">
+      <div class="flex items-center gap-2 text-lg font-semibold">
+        <span class="text-gray-700">時間帯</span>
+        <span class="text-sm text-gray-500">（ひとつ選択）</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <% time_of_days.each do |t| %>
+          <label class="cursor-pointer">
+            <%= f.radio_button :time_of_day, t, class: "hidden peer" %>
+            <div class="<%= common_option_classes %>">
+              <span class="block font-medium peer-checked:font-semibold"><%= t %></span>
+            </div>
+          </label>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="space-y-3">
+      <div class="flex items-center gap-2 text-lg font-semibold">
+        <span class="text-gray-700">季節感</span>
+        <span class="text-sm text-gray-500">（ひとつ選択）</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <% seasons.each do |s| %>
+          <label class="cursor-pointer">
+            <%= f.radio_button :season, s, class: "hidden peer" %>
+            <div class="<%= common_option_classes %>">
+              <span class="block font-medium peer-checked:font-semibold"><%= s %></span>
+            </div>
+          </label>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="space-y-3">
+      <div class="flex items-center gap-2 text-lg font-semibold">
+        <span class="text-gray-700">ジャンル</span>
+        <span class="text-sm text-gray-500">（ひとつ選択）</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <% genres.each do |g| %>
+          <label class="cursor-pointer">
+            <%= f.radio_button :genre, g, class: "hidden peer" %>
+            <div class="<%= common_option_classes %>">
+              <span class="block font-medium peer-checked:font-semibold"><%= g %></span>
+            </div>
+          </label>
+        <% end %>
+      </div>
+    </div>
+    <div class="flex gap-4 pt-4">
+      <%= f.submit "条件で検索する", class: "flex-1 py-3 px-4 bg-orange-500 text-white font-bold rounded-lg shadow hover:bg-orange-600 transition" %>
+      <%= link_to "クリア", advanced_search_path, class: "py-3 px-4 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition" %>
+    </div>
+  <% end %>
 </div>
