@@ -1,8 +1,17 @@
 class SearchController < ApplicationController
-  def show
-    # 複数条件検索 + ランダム1件取得
-    @dish = Dish.search_by_conditions(search_params).sample
-    
-    # 同じく詳細情報を表示
+  def multiple_conditions
+    @selected_conditions = search_params.compact_blank
+    return if @selected_conditions.blank?
+
+    @dishes = Dish.search_by_conditions(@selected_conditions)
+    @dish = @dishes.sample
+    return redirect_to root_path, alert: "条件に合う料理が見つかりませんでした" if @dish.nil?
+
+    render 'dishes/result'
+  end
+
+  private
+  def search_params
+    params.permit(:keyword, :category, :time_of_day, :season, :mood, :genre, :cooking_style, :healthiness_type)
   end
 end
