@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_12_30_061736) do
+ActiveRecord::Schema[7.2].define(version: 2026_01_04_065813) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -85,6 +85,18 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_30_061736) do
     t.jsonb "healthiness_types"
   end
 
+  create_table "search_histories", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "dish_id"
+    t.jsonb "query_params", default: {}, null: false
+    t.datetime "executed_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dish_id"], name: "index_search_histories_on_dish_id"
+    t.index ["user_id", "executed_at"], name: "index_search_histories_on_user_id_and_executed_at"
+    t.index ["user_id"], name: "index_search_histories_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -102,4 +114,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_30_061736) do
 
   add_foreign_key "category_contents", "categories"
   add_foreign_key "category_contents", "dishes"
+  add_foreign_key "search_histories", "dishes"
+  add_foreign_key "search_histories", "users"
 end
