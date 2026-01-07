@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# 残っている pid を毎回掃除
+rm -f tmp/pids/server.pid
+
 # マイグレーション実行
 bundle exec rails db:migrate
 

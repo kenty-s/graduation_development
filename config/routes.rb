@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root 'home#index'
   
   # 検索結果（料理1件をランダム表示）
-  post 'result', to: 'dishes#result'
+  get 'result', to: 'dishes#result'
   
   # ========================================
   # MVP後の拡張機能（ルーティングのみ先行定義）
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   # post 'search/advanced_result', to: 'search#advanced_result'
   
   # 検索履歴（ログインユーザーのみ）
-  # resources :search_histories, only: [:index, :destroy]
+  resources :search_histories, only: [:index, :destroy,]
   
   # SNS投稿（X投稿機能）
   # post 'share/twitter', to: 'share#twitter'

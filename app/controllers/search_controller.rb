@@ -7,11 +7,22 @@ class SearchController < ApplicationController
     @dish = @dishes.sample
     return redirect_to root_path, alert: "条件に合う料理が見つかりませんでした" if @dish.nil?
 
+    save_history(@selected_conditions, @dish)  # 呼び出し名
     render 'dishes/result'
   end
 
   private
+
   def search_params
     params.permit(:keyword, :category, :time_of_day, :season, :mood, :genre, :cooking_style, :healthiness_type)
+  end
+
+  def save_history(params_hash, dish)
+    return unless current_user
+    current_user.search_histories.create!(
+      query_params: params_hash,
+      dish: dish,
+      executed_at: Time.current
+    )
   end
 end

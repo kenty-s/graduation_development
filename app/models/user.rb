@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :search_histories, dependent: :destroy
   devise :database_authenticatable,
          :registerable,
          :recoverable,

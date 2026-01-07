@@ -1,0 +1,65 @@
+<div class="bg-[#f6edde] min-h-screen py-8">
+  <div class="max-w-4xl mx-auto px-4 space-y-4">
+    <header class="space-y-1">
+      <div class="flex items-center gap-2 text-2xl font-semibold text-gray-800">
+        <span class="text-xl">📖</span>
+        検索履歴
+      <span class="text-sm text-gray-500 font-normal">過去に提案された料理の履歴です</span>
+      </div>
+    </header>
+
+    <% @search_histories.each do |h| %>
+      <% mood_candidate = [
+        h.query_params["mood"],
+        h.query_params["category"],
+        (h.dish&.categories&.pluck(:name) || [])
+      ].flatten.compact_blank.map(&:to_s).find { |v| v.include?("ガッツリ") || v.include?("サッパリ") } %>
+      <% mood = mood_candidate %>
+      <% icon, icon_bg =
+        if mood&.include?("ガッツリ")
+          ["gattsuri_icon.png"]
+        elsif mood&.include?("サッパリ")
+          ["sappari_icon.png"]
+        else
+          [nil, "bg-amber-800"]
+        end %>
+      <% selected_tags = h.query_params.values_at(
+        "category",
+        "mood",
+        "time_of_day",
+        "season",
+        "genre",
+        "cooking_style",
+        "healthiness_type"
+      ).flatten.compact_blank.uniq %>
+
+      <div class="bg-white border border-gray-200/80 rounded-2xl shadow-sm p-5 flex gap-3">
+        <div class="w-14 h-14 rounded-full <%= icon_bg %> flex items-center justify-center overflow-hidden shrink-0">
+          <% if icon %>
+            <%= image_tag icon, alt: mood, class: "w-10 h-10 object-contain" %>
+          <% else %>
+            <span class="text-xs text-white">料理</span>
+          <% end %>
+        </div>
+
+        <div class="flex-1 space-y-2">
+          <div class="flex items-center gap-2 flex-wrap">
+            <p class="text-lg font-semibold text-gray-800"><%= h.dish&.name || "提案なし" %></p>
+          </div>
+          <p class="text-xs text-gray-500"><%= h.executed_at.in_time_zone.strftime("%Y/%m/%d %H:%M") %></p>
+
+          <% if selected_tags.present? %>
+            <div class="flex flex-wrap gap-2 text-xs text-gray-700">
+              <% selected_tags.each do |tag| %>
+                <span class="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 shadow-sm"><%= tag %></span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <%= button_to "削除",  search_history_path(h),  method: :delete,  data: { turbo_confirm: "削除しますか？" } %>
+
+      </div>
+    <% end %>
+  </div>
+</div>
