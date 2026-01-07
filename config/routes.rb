@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   # post 'search/advanced_result', to: 'search#advanced_result'
   
   # 検索履歴（ログインユーザーのみ）
-  resources :search_histories, only: [:index, :destroy]
+  resources :search_histories, only: [:index, :destroy,]
   
   # SNS投稿（X投稿機能）
   # post 'share/twitter', to: 'share#twitter'

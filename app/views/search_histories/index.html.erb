@@ -57,7 +57,8 @@
           <% end %>
         </div>
 
-        <%= link_to "削除", search_history_path(h), data: { turbo_method: :delete, turbo_confirm: "削除しますか？" }, class: "text-xs text-gray-400 hover:text-red-500" %>
+        <%= button_to "削除",  search_history_path(h),  method: :delete,  data: { turbo_confirm: "削除しますか？" } %>
+
       </div>
     <% end %>
   </div>
