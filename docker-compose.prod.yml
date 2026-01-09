@@ -1,4 +1,18 @@
 services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: graduation_production
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d graduation_production"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   web:
     build:
       context: .
@@ -7,17 +21,15 @@ services:
         GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
         GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
     env_file:
-      - .env
+      - .env.production
     environment:
       RAILS_ENV: production
       DATABASE_URL: postgres://postgres:password@db:5432/graduation_production
     ports:
-      - "80:80"
+      - "80:3000"
     depends_on:
-      - db
-    # entrypoint を使わない場合は以下を有効化
-    # command: bash -lc "rm -f tmp/pids/server.pid && bundle exec puma -C config/puma.rb"
+      db:
+        condition: service_healthy
 
 volumes:
   db_data:
-  bundle_data:

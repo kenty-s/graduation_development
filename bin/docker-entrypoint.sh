@@ -7,9 +7,9 @@ rm -f tmp/pids/server.pid
 # マイグレーション実行
 bundle exec rails db:migrate
 
-# データが0件の時だけシード実行
-if [ "$(bundle exec rails runner 'puts Dish.count')" = "0" ]; then
-  echo "Database is empty. Running seeds..."
+# 明示的に実行する時だけ seed
+if [ "${RUN_SEEDS:-false}" = "true" ]; then
+  echo "RUN_SEEDS=true -> db:seed"
   bundle exec rails db:seed
 fi
 
