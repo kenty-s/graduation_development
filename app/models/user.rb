@@ -8,10 +8,25 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:google_oauth2]
 
   def self.from_omniauth(auth)
-    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
-      user.email = auth.info.email
-      user.name  = auth.info.name
-      user.password = Devise.friendly_token[0, 20]
+    provider = auth.provider
+    uid = auth.uid
+    email = auth.info.email
+
+    user = find_by(provider: provider, uid: uid)
+    return user if user
+
+    user = find_by(email: email)
+    if user
+      return user if user.provider.blank? && user.uid.blank? && user.update(provider: provider, uid: uid)
+      return nil
+    end
+
+    create do |new_user|
+      new_user.provider = provider
+      new_user.uid = uid
+      new_user.email = email
+      new_user.name = auth.info.name
+      new_user.password = Devise.friendly_token[0, 20]
     end
   end
 end
