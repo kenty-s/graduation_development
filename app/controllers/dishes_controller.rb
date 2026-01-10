@@ -1,6 +1,6 @@
 class DishesController < ApplicationController
   def result
-    category_name = params[:category]
+    category_name = result_params[:category]
 
     # カテゴリ名からランダムに1件取得
     @dish = Dish.random_by_category(category_name)
@@ -14,6 +14,10 @@ class DishesController < ApplicationController
   end
 
   private
+
+  def result_params
+    params.permit(:category)
+  end
 
   def save_search_history(params_hash, dish)
     return unless current_user
