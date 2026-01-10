@@ -17,8 +17,12 @@ class SearchResultController < ApplicationController
     dishes = Dish.all
     
     # パラメータに応じて検索条件を追加
-    dishes = dishes.where(条件) if params[:条件].present?
+    dishes = dishes.where(条件) if search_params[:条件].present?
     
     dishes
+  end
+
+  def search_params
+    params.permit(:条件)
   end
 end
