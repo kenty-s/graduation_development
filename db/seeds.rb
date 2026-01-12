@@ -2,6 +2,18 @@ require "cgi"
 require "stringio"
 require "zlib"
 
+SEED_VERSION = "2026-01-13"
+
+unless ActiveRecord::Base.connection.data_source_exists?("seed_runs")
+  puts "seed_runs table is missing. Run db:migrate before db:seed."
+  exit
+end
+
+if SeedRun.exists?(version: SEED_VERSION)
+  puts "Seeds already applied for version #{SEED_VERSION}. Skipping."
+  exit
+end
+
 def dish_placeholder_svg(name)
   palette = [
     ["#2b2118", "#d4a373"],
@@ -284,4 +296,6 @@ puts "Dishes created!"
 puts "Total dishes: #{Dish.count}"
 puts "Total categories: #{Category.count}"
 puts "Total connections: #{CategoryContent.count}"
+SeedRun.create!(version: SEED_VERSION, applied_at: Time.current)
+puts "Seed version #{SEED_VERSION} recorded."
 puts "Seed data creation completed!"
