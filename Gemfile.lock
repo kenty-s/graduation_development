@@ -202,7 +202,7 @@ GEM
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
-    minitest (5.26.0)
+    minitest (5.26.1)
     msgpack (1.8.0)
     multi_xml (0.8.0)
       bigdecimal (>= 3.1, < 5)
@@ -321,9 +321,9 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.3.1)
-    ransack (4.4.0)
-      activerecord (>= 7.1)
-      activesupport (>= 7.1)
+    ransack (4.4.1)
+      activerecord (>= 7.2)
+      activesupport (>= 7.2)
       i18n
     rdoc (6.15.1)
       erb
@@ -465,7 +465,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 7.2.3)
   rails-i18n (~> 7.0.0)
-  ransack (~> 4.0)
+  ransack (~> 4.4)
   rubocop-rails-omakase
   selenium-webdriver
   solid_cable
