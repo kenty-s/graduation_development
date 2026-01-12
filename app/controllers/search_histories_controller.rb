@@ -2,7 +2,7 @@ class SearchHistoriesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @search_histories = current_user.search_histories.recent
+    @search_histories = current_user.search_histories.recent.includes(dish: { category_contents: :category })
   end
 
   def destroy

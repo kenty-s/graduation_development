@@ -1,8 +1,8 @@
 <div class="w-full max-w-6xl mx-auto px-4 py-8">
   <!-- ヘッダー部分（1列） -->
   <div class="text-center mb-12">
-    <p class="text-gray-600 mb-2">あなたの「食べたい」は...</p>
-    <p class="text-gray-400 text-sm mb-6">📅 <%= Time.current.strftime("%m月%d日 %H:%M") %></p>
+    <p class="text-gray-600 mb-2">あなたの今食べたい「キブン」の「メシ」は...</p>
+    <p class="text-gray-400 text-sm mb-6"><%= Time.current.strftime("%m月%d日 %H:%M") %></p>
 
     <h1 class="text-4xl font-bold mb-4"><%= @dish.name %></h1>
 
@@ -14,23 +14,24 @@
     <% end %>
   </div>
 
-  <!-- カード部分（2列グリッド） -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-    <!-- おすすめタイミング -->
+  <!-- カード部分（1列レイアウト） -->
+  <div class="space-y-6 mb-12">
+    <!-- 時間帯 -->
     <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-      <h2 class="text-xl font-bold mb-4 flex items-center">
-        🕐 おすすめタイミング
-      </h2>
-      <div class="mb-4">
-        <p class="text-sm font-semibold text-gray-700 mb-2">時間帯</p>
+      <div class="flex flex-wrap items-center gap-4">
+        <span class="text-xl font-bold text-gray-900 min-w-[4.5rem]">時間帯</span>
         <div class="flex flex-wrap gap-2">
           <% @dish.category_contents.includes(:category).where(label: "時間帯").each do |cc| %>
             <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"><%= cc.category.name %></span>
           <% end %>
         </div>
       </div>
-      <div>
-        <p class="text-sm font-semibold text-gray-700 mb-2">季節</p>
+    </div>
+
+    <!-- 季節 -->
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+      <div class="flex flex-wrap items-center gap-4">
+        <span class="text-xl font-bold text-gray-900 min-w-[4.5rem]">季節</span>
         <div class="flex flex-wrap gap-2">
           <% @dish.category_contents.includes(:category).where(label: "季節").each do |cc| %>
             <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm"><%= cc.category.name %></span>
@@ -39,50 +40,15 @@
       </div>
     </div>
 
-    <!-- こんな時にぴったり -->
+    <!-- ジャンル -->
     <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-      <h2 class="text-xl font-bold mb-4 flex items-center">
-        💭 こんな時にぴったり
-      </h2>
-      <div class="mb-4">
-        <p class="text-sm font-semibold text-gray-700 mb-2">気分</p>
-        <div class="flex flex-wrap gap-2">
-          <% @dish.category_contents.includes(:category).where(label: "気分詳細").each do |cc| %>
-            <span class="px-3 py-1 bg-pink-100 text-pink-700 rounded-full text-sm"><%= cc.category.name %></span>
-          <% end %>
-        </div>
-      </div>
-      <div>
-        <p class="text-sm font-semibold text-gray-700 mb-2">ジャンル</p>
+      <div class="flex flex-wrap items-center gap-4">
+        <span class="text-xl font-bold text-gray-900 min-w-[4.5rem]">ジャンル</span>
         <div class="flex flex-wrap gap-2">
           <% @dish.category_contents.includes(:category).where(label: "ジャンル").each do |cc| %>
             <span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm"><%= cc.category.name %></span>
           <% end %>
         </div>
-      </div>
-    </div>
-
-    <!-- 調理スタイル -->
-    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-      <h2 class="text-xl font-bold mb-4 flex items-center">
-        🍳 調理スタイル
-      </h2>
-      <div class="flex flex-wrap gap-2">
-        <% @dish.category_contents.includes(:category).where(label: "調理スタイル").each do |cc| %>
-          <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm"><%= cc.category.name %></span>
-        <% end %>
-      </div>
-    </div>
-
-    <!-- 栄養バランス -->
-    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-      <h2 class="text-xl font-bold mb-4 flex items-center">
-        🥗 栄養バランス
-      </h2>
-      <div class="flex flex-wrap gap-2">
-        <% @dish.category_contents.includes(:category).where(label: "ヘルシーさ").each do |cc| %>
-          <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm"><%= cc.category.name %></span>
-        <% end %>
       </div>
     </div>
   </div>
@@ -99,23 +65,17 @@
         class: "px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg border border-gray-300 transition-all duration-200" %>
 
     <% if only_category %>
-      <%= button_to "↺ 同じ条件でもう一度",
+      <%= button_to "同じ条件でもう一度",
           result_path,
           method: :get,
           params: repeat_params,
           class: "px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg border border-gray-300 transition-all duration-200" %>
     <% else %>
-      <%= button_to "↺ 同じ条件でもう一度",
+      <%= button_to "同じ条件でもう一度",
           advanced_search_path,
           method: :get,
           params: repeat_params,
           class: "px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg border border-gray-300 transition-all duration-200" %>
     <% end %>
-  </div>
-
-  <!-- 関連情報 -->
-  <div class="bg-gray-50 rounded-2xl border border-gray-200 p-6">
-    <h2 class="font-bold mb-2">📌 関連情報(MVP後実装予定)</h2>
-    <p class="text-sm text-gray-600">会員登録すると、過去に検索された料理の履歴を確認できます。<br>お気に入りの料理を見つけやすくなります。</p>
   </div>
 </div>

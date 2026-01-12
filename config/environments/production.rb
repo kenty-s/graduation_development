@@ -30,8 +30,8 @@ Rails.application.configure do
     end
   }
   
-  config.hosts << "graduation-development.onrender.com"
-  config.action_controller.asset_host = "https://graduation-development.onrender.com"
+  config.hosts << "kibunmeshi.onrender.com"
+  config.action_controller.asset_host = "https://kibunmeshi.onrender.com"
 
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
@@ -76,7 +76,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
-  app_host = ENV["APP_HOST"] || ENV["RENDER_EXTERNAL_HOSTNAME"] || "graduation-development.onrender.com"
+  app_host = ENV["APP_HOST"] || ENV["RENDER_EXTERNAL_HOSTNAME"] || "kibunmeshi.onrender.com"
   config.action_mailer.default_url_options = { host: app_host, protocol: "https" }
 
   config.action_mailer.perform_deliveries = true

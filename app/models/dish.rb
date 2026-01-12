@@ -1,6 +1,7 @@
 class Dish < ApplicationRecord
   has_many :category_contents, dependent: :destroy
   has_many :categories, through: :category_contents
+  has_one_attached :image
 
   # カテゴリ名から料理を検索
   scope :by_category, ->(category_name) {
