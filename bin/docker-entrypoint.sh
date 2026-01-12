@@ -13,5 +13,5 @@ if [ "${RUN_SEEDS:-false}" = "true" ]; then
   bundle exec rails db:seed
 fi
 
-# サーバー起動
-exec bundle exec rails server -b 0.0.0.0
+# サーバー起動（RenderはPORT環境変数を要求）
+exec bundle exec rails server -b 0.0.0.0 -p "${PORT:-3000}"
