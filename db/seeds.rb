@@ -1,3 +1,42 @@
+require "cgi"
+require "stringio"
+require "zlib"
+
+def dish_placeholder_svg(name)
+  palette = [
+    ["#2b2118", "#d4a373"],
+    ["#1f2a24", "#8fc5a2"],
+    ["#2b2f3a", "#a6c0ff"],
+    ["#3a2630", "#e6a6b3"],
+    ["#2a2d20", "#d8c48b"],
+    ["#2f1f22", "#f0b49c"]
+  ]
+  seed = Zlib.crc32(name)
+  base, accent = palette[seed % palette.length]
+  escaped = CGI.escapeHTML(name)
+
+  <<~SVG
+    <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+      <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#{base}"/>
+          <stop offset="100%" stop-color="#{accent}"/>
+        </linearGradient>
+      </defs>
+      <rect width="1200" height="800" fill="url(#bg)"/>
+      <circle cx="1020" cy="140" r="140" fill="rgba(255,255,255,0.18)"/>
+      <circle cx="980" cy="620" r="220" fill="rgba(255,255,255,0.12)"/>
+      <text x="80" y="140" fill="rgba(255,255,255,0.8)" font-size="28" letter-spacing="6" font-family="'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif">
+        KIBUNMESHI
+      </text>
+      <text x="80" y="260" fill="#ffffff" font-size="96" font-weight="700" font-family="'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif">
+        #{escaped}
+      </text>
+      <rect x="80" y="300" width="220" height="8" rx="4" fill="rgba(255,255,255,0.8)"/>
+    </svg>
+  SVG
+end
+
 # カテゴリを作成（全てのタグをCategoryとして統合）
 puts "Creating categories..."
 
@@ -188,6 +227,15 @@ foods_data.each do |food_data|
     healthiness_types: food_data[:healthiness_types]
   )
   dish.save!
+
+  if dish.respond_to?(:image) && !dish.image.attached?
+    svg = dish_placeholder_svg(dish.name)
+    dish.image.attach(
+      io: StringIO.new(svg),
+      filename: "dish-#{dish.id}.svg",
+      content_type: "image/svg+xml"
+    )
+  end
   
   # 気分カテゴリ（ガッツリ/サッパリ）
   if food_data[:category]
