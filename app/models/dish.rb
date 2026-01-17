@@ -1,4 +1,6 @@
 class Dish < ApplicationRecord
+  SPICE_LABEL = "スパイス/ハーブ"
+
   has_many :category_contents, dependent: :destroy
   has_many :categories, through: :category_contents
   has_one_attached :image
@@ -22,12 +24,62 @@ class Dish < ApplicationRecord
       spice_names = Array(params[:spice_names]).compact_blank
       if spice_names.any?
         spice_dish_ids = Dish.joins(category_contents: :category)
-                             .where(category_contents: { label: "スパイス/ハーブ" }, categories: { name: spice_names })
+                             .where(category_contents: { label: SPICE_LABEL }, categories: { name: spice_names })
                              .select(:id)
         scope = scope.where(id: spice_dish_ids)
       end
     end
     scope
+  end
+
+  def spice_names_for_display(fallback_names: [])
+    names = category_contents.includes(:category).where(label: SPICE_LABEL).map { |cc| cc.category.name }
+    return names if names.present?
+
+    fallback = Array(fallback_names).compact_blank
+    return fallback if fallback.present?
+
+    self.class.spices_for_name(name)
+  end
+
+  def self.spices_for_name(dish_name)
+    return [] if dish_name.blank?
+
+    spices =
+      case dish_name
+      when /カレー|タンドリー|キーマ|グリーンカレー|バターチキン|カツカレー/
+        %w[クミン コリアンダー ターメリック カルダモン 唐辛子]
+      when /タコス|ブリトー|タコライス/
+        %w[クミン コリアンダー パプリカ 唐辛子]
+      when /ガパオ|トムヤムクン|パッタイ|フォー/
+        %w[唐辛子 コリアンダー クミン バジル]
+      when /麻婆|回鍋肉|青椒肉絲|酢豚|チャーハン|餃子|春巻き|エビチリ|エビマヨ|春雨スープ|卵スープ|ラーメン|冷やし中華/
+        %w[五香粉 唐辛子 生姜 ガーリック ブラックペッパー]
+      when /ビビンバ|プルコギ|チヂミ/
+        %w[唐辛子 ガーリック ブラックペッパー 生姜]
+      when /パスタ|ピザ|ナポリタン|カプレーゼ|グラタン|ドリア|ラザニア|ミネストローネ|コンソメスープ|シチュー|クラムチャウダー|コーンスープ/
+        %w[バジル オレガノ ローレル ブラックペッパー]
+      when /ペペロンチーノ/
+        %w[ガーリック 唐辛子 オレガノ ブラックペッパー]
+      when /ステーキ|ハンバーグ|ロースト|チキンソテー|ロコモコ|ホットサンド/
+        %w[ブラックペッパー ガーリック ローズマリー タイム]
+      when /とんかつ|唐揚げ|チキンカツ|エビフライ|天ぷら|かつ丼|天丼/
+        %w[ブラックペッパー パプリカ ガーリック]
+      when /寿司|刺身|海鮮丼|鉄火丼|手巻き寿司|ちらし寿司|焼き魚|うな重/
+        %w[山椒 生姜 ブラックペッパー]
+      when /おでん|肉じゃが|豚の角煮|鶏の照り焼き|生姜焼き|芋煮|湯豆腐|冷奴|お茶漬け|おかゆ|みそ汁|茶碗蒸し/
+        %w[生姜 山椒 ブラックペッパー]
+      when /スムージー|フルーツ|ヨーグルト|シリアル|フルーツサンド|プリン|フレンチトースト|パンケーキ|アイス|ゼリー|かき氷/
+        %w[シナモン ナツメグ カルダモン]
+      when /サラダ|シーザーサラダ|カプレーゼ|サンドイッチ|トースト/
+        %w[バジル パセリ ブラックペッパー]
+      when /そば|うどん|そうめん|ひやむぎ|焼きそば|お好み焼き|たこ焼き/
+        %w[ブラックペッパー 唐辛子 生姜]
+      else
+        %w[ブラックペッパー]
+      end
+
+    spices.uniq
   end
   # PostgreSQLのRANDOM関数でランダムに並び替えて1件取得
   def self.random_by_category(category_name)
