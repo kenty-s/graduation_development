@@ -57,7 +57,7 @@
       <div class="flex flex-wrap items-center gap-4">
         <span class="text-xl font-bold text-gray-900 min-w-[6rem]">スパイス</span>
         <div class="flex flex-wrap gap-2">
-          <% spice_tags = @dish.category_contents.includes(:category).where(label: "スパイス/ハーブ") %>
+          <% spice_names = @dish.spice_names_for_display(fallback_names: params[:spice_names]) %>
           <% spice_image_map = {
             "ブラックペッパー" => "black_pepper.png",
             "ガーリック" => "garlic.png",
@@ -80,14 +80,14 @@
             "バジル" => "basil.png",
             "五香粉" => "gokohfun.png"
           } %>
-          <% if spice_tags.present? %>
-            <% spice_tags.each do |cc| %>
-              <% spice_image = spice_image_map[cc.category.name] %>
+          <% if spice_names.present? %>
+            <% spice_names.each do |spice_name| %>
+              <% spice_image = spice_image_map[spice_name] %>
               <span class="inline-flex items-center gap-3 px-4 py-2 bg-emerald-100 text-emerald-800 rounded-full text-base">
                 <% if spice_image.present? %>
-                  <%= image_tag spice_image, alt: cc.category.name, class: "w-16 h-16 shrink-0 object-contain" %>
+                  <%= image_tag spice_image, alt: spice_name, class: "w-16 h-16 shrink-0 object-contain" %>
                 <% end %>
-                <span><%= cc.category.name %></span>
+                <span><%= spice_name %></span>
               </span>
             <% end %>
           <% else %>
