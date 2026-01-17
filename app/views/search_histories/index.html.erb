@@ -27,15 +27,18 @@
       <% time_of_day_tags = dish_tags.any? ? dish_tags.select { |cc| cc.label == "時間帯" }.map { |cc| cc.category.name } : Array(h.query_params["time_of_day"]) %>
       <% season_tags = dish_tags.any? ? dish_tags.select { |cc| cc.label == "季節" }.map { |cc| cc.category.name } : Array(h.query_params["season"]) %>
       <% genre_tags = dish_tags.any? ? dish_tags.select { |cc| cc.label == "ジャンル" }.map { |cc| cc.category.name } : Array(h.query_params["genre"]) %>
+      <% spice_tags = dish_tags.any? ? dish_tags.select { |cc| cc.label == "スパイス/ハーブ" }.map { |cc| cc.category.name } : Array(h.query_params["spice_names"]) %>
       <% tag_orders = {
         "時間帯" => ["朝", "昼", "夜", "おやつ"],
         "季節" => ["春", "夏", "秋", "冬"],
-        "ジャンル" => ["和食", "洋食", "中華", "エスニック", "その他"]
+        "ジャンル" => ["和食", "洋食", "中華", "エスニック", "その他"],
+        "スパイス/ハーブ" => ["ブラックペッパー", "ガーリック", "生姜", "唐辛子", "クミン", "コリアンダー", "ターメリック", "パプリカ", "オレガノ", "ローズマリー", "タイム", "パセリ", "ローレル", "ナツメグ", "クローブ", "山椒", "カルダモン", "シナモン", "バジル", "五香粉"]
       } %>
       <% tag_groups = {
         "時間帯" => time_of_day_tags,
         "季節" => season_tags,
-        "ジャンル" => genre_tags
+        "ジャンル" => genre_tags,
+        "スパイス/ハーブ" => spice_tags
       } %>
 
       <div class="bg-white border border-gray-200/80 rounded-2xl shadow-sm p-8 flex flex-row items-start gap-8">
@@ -53,7 +56,7 @@
           </div>
         </div>
 
-        <div class="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="flex-1 grid grid-cols-1 sm:grid-cols-4 gap-4">
           <% tag_groups.each do |label, tags| %>
             <% sorted_tags = Array(tags).compact_blank.uniq.sort_by { |tag| tag_orders[label].index(tag) || tag_orders[label].length } %>
             <div class="bg-amber-50 border border-amber-100 rounded-xl px-4 py-3">

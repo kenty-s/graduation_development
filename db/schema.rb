@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_01_11_090000) do
+ActiveRecord::Schema[7.2].define(version: 2026_01_13_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -123,6 +123,14 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_11_090000) do
     t.index ["dish_id"], name: "index_search_histories_on_dish_id"
     t.index ["user_id", "executed_at"], name: "index_search_histories_on_user_id_and_executed_at"
     t.index ["user_id"], name: "index_search_histories_on_user_id"
+  end
+
+  create_table "seed_runs", force: :cascade do |t|
+    t.string "version", null: false
+    t.datetime "applied_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["version"], name: "index_seed_runs_on_version", unique: true
   end
 
   create_table "users", force: :cascade do |t|
