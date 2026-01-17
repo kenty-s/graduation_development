@@ -2,7 +2,7 @@ require "cgi"
 require "stringio"
 require "zlib"
 
-SEED_VERSION = "2026-01-13"
+SEED_VERSION = "2026-01-15-spice"
 
 unless ActiveRecord::Base.connection.data_source_exists?("seed_runs")
   puts "seed_runs table is missing. Run db:migrate before db:seed."
@@ -12,6 +12,10 @@ end
 if SeedRun.exists?(version: SEED_VERSION)
   puts "Seeds already applied for version #{SEED_VERSION}. Skipping."
   exit
+end
+
+unless ActiveRecord::Base.connection.data_source_exists?("solid_queue_jobs")
+  ActiveJob::Base.queue_adapter = :inline
 end
 
 def dish_placeholder_svg(name)
@@ -49,8 +53,65 @@ def dish_placeholder_svg(name)
   SVG
 end
 
+SPICE_LABEL = "スパイス/ハーブ"
+SPICE_NAMES = [
+  "ブラックペッパー", "ガーリック", "生姜", "唐辛子", "クミン", "コリアンダー", "ターメリック", "パプリカ",
+  "オレガノ", "ローズマリー", "タイム", "パセリ", "ローレル", "ナツメグ", "クローブ", "山椒",
+  "カルダモン", "シナモン", "バジル", "五香粉"
+].freeze
+
+def spices_for_dish(name)
+  spices =
+    case name
+    when /カレー|タンドリー|キーマ|グリーンカレー|バターチキン|カツカレー/
+      %w[クミン コリアンダー ターメリック カルダモン 唐辛子]
+    when /タコス|ブリトー|タコライス/
+      %w[クミン コリアンダー パプリカ 唐辛子]
+    when /ガパオ|トムヤムクン|パッタイ|フォー/
+      %w[唐辛子 コリアンダー クミン バジル]
+    when /麻婆|回鍋肉|青椒肉絲|酢豚|チャーハン|餃子|春巻き|エビチリ|エビマヨ|春雨スープ|卵スープ|ラーメン|冷やし中華/
+      %w[五香粉 唐辛子 生姜 ガーリック ブラックペッパー]
+    when /ビビンバ|プルコギ|チヂミ/
+      %w[唐辛子 ガーリック ブラックペッパー 生姜]
+    when /パスタ|ピザ|ナポリタン|カプレーゼ|グラタン|ドリア|ラザニア|ミネストローネ|コンソメスープ|シチュー|クラムチャウダー|コーンスープ/
+      %w[バジル オレガノ ローレル ブラックペッパー]
+    when /ペペロンチーノ/
+      %w[ガーリック 唐辛子 オレガノ ブラックペッパー]
+    when /ステーキ|ハンバーグ|ロースト|チキンソテー|ロコモコ|ホットサンド/
+      %w[ブラックペッパー ガーリック ローズマリー タイム]
+    when /とんかつ|唐揚げ|チキンカツ|エビフライ|天ぷら|かつ丼|天丼/
+      %w[ブラックペッパー パプリカ ガーリック]
+    when /寿司|刺身|海鮮丼|鉄火丼|手巻き寿司|ちらし寿司|焼き魚|うな重/
+      %w[山椒 生姜 ブラックペッパー]
+    when /おでん|肉じゃが|豚の角煮|鶏の照り焼き|生姜焼き|芋煮|湯豆腐|冷奴|お茶漬け|おかゆ|みそ汁|茶碗蒸し/
+      %w[生姜 山椒 ブラックペッパー]
+    when /スムージー|フルーツ|ヨーグルト|シリアル|フルーツサンド|プリン|フレンチトースト|パンケーキ|アイス|ゼリー|かき氷/
+      %w[シナモン ナツメグ カルダモン]
+    when /サラダ|シーザーサラダ|カプレーゼ|サンドイッチ|トースト/
+      %w[バジル パセリ ブラックペッパー]
+    when /そば|うどん|そうめん|ひやむぎ|焼きそば|お好み焼き|たこ焼き/
+      %w[ブラックペッパー 唐辛子 生姜]
+    else
+      %w[ブラックペッパー]
+    end
+
+  spices.uniq
+end
+
 # カテゴリを作成（全てのタグをCategoryとして統合）
 puts "Creating categories..."
+
+# 旧表記を統一して重複カテゴリを防ぐ
+legacy_pepper = Category.find_by(name: "黒胡椒")
+current_pepper = Category.find_by(name: "ブラックペッパー")
+if legacy_pepper
+  if current_pepper
+    CategoryContent.where(category_id: legacy_pepper.id).update_all(category_id: current_pepper.id)
+    legacy_pepper.destroy!
+  else
+    legacy_pepper.update!(name: "ブラックペッパー")
+  end
+end
 
 # 気分（MVP用：ガッツリ/サッパリ）
 ['ガッツリ', 'サッパリ'].each { |name| Category.find_or_create_by(name: name) }
@@ -72,6 +133,9 @@ puts "Creating categories..."
 
 # ヘルシーさ
 ['ヘルシー', 'こってり', '野菜多め', 'タンパク質重視'].each { |name| Category.find_or_create_by(name: name) }
+
+# スパイス/ハーブ
+SPICE_NAMES.each { |name| Category.find_or_create_by(name: name) }
 
 puts "Categories created!"
 
@@ -289,6 +353,12 @@ foods_data.each do |food_data|
   food_data[:healthiness_types]&.each do |health_name|
     category = Category.find_by(name: health_name)
     CategoryContent.find_or_create_by(dish: dish, category: category, label: "ヘルシーさ") if category
+  end
+
+  spice_names = Array(food_data[:spices]).presence || spices_for_dish(dish.name)
+  spice_names.each do |spice_name|
+    category = Category.find_by(name: spice_name)
+    CategoryContent.find_or_create_by(dish: dish, category: category, label: SPICE_LABEL) if category
   end
 end
 

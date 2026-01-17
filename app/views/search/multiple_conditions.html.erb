@@ -5,6 +5,7 @@
   <% time_of_days    = ['朝', '昼', '夜', 'おやつ'] %>
   <% seasons         = ['春', '夏', '秋', '冬'] %>
   <% genres          = ['和食', '洋食', '中華', 'エスニック', 'その他'] %>
+  <% spices          = ['ブラックペッパー', 'ガーリック', '生姜', '唐辛子', 'クミン', 'コリアンダー', 'ターメリック', 'パプリカ', 'オレガノ', 'ローズマリー', 'タイム', 'パセリ', 'ローレル', 'ナツメグ', 'クローブ', '山椒', 'カルダモン', 'シナモン', 'バジル', '五香粉'] %>
   <% common_option_classes = "rounded-xl px-4 py-3 text-center border border-gray-300 bg-white text-gray-700 shadow-sm transition hover:shadow-md hover:border-gray-400 peer-checked:border-orange-500 peer-checked:bg-orange-50 peer-checked:text-orange-700 peer-checked:shadow peer-checked:ring-2 peer-checked:ring-orange-200" %>
 
   <%= form_with url: advanced_search_path, method: :get, local: true, data: { turbo: false }, class: "space-y-6" do |f| %>
@@ -70,6 +71,23 @@
             <%= f.radio_button :genre, g, class: "hidden peer" %>
             <div class="<%= common_option_classes %>">
               <span class="block font-medium peer-checked:font-semibold"><%= g %></span>
+            </div>
+          </label>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="space-y-3">
+      <div class="flex items-center gap-2 text-lg font-semibold">
+        <span class="text-gray-700">スパイス/ハーブ</span>
+        <span class="text-sm text-gray-500">（手持ちを複数選択 / OR）</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <% spices.each do |spice| %>
+          <label class="cursor-pointer">
+            <%= f.check_box :spice_names, { multiple: true, class: "hidden peer" }, spice, nil %>
+            <div class="<%= common_option_classes %>">
+              <span class="block font-medium peer-checked:font-semibold"><%= spice %></span>
             </div>
           </label>
         <% end %>

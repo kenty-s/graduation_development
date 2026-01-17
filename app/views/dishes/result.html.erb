@@ -51,11 +51,56 @@
         </div>
       </div>
     </div>
+
+    <!-- スパイス/ハーブ -->
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+      <div class="flex flex-wrap items-center gap-4">
+        <span class="text-xl font-bold text-gray-900 min-w-[6rem]">スパイス</span>
+        <div class="flex flex-wrap gap-2">
+          <% spice_tags = @dish.category_contents.includes(:category).where(label: "スパイス/ハーブ") %>
+          <% spice_image_map = {
+            "ブラックペッパー" => "black_pepper.png",
+            "ガーリック" => "garlic.png",
+            "生姜" => "ginger.png",
+            "唐辛子" => "chili.png",
+            "クミン" => "cumin.png",
+            "コリアンダー" => "coriander.png",
+            "ターメリック" => "turmeric.png",
+            "パプリカ" => "paprika.png",
+            "オレガノ" => "oregano.png",
+            "ローズマリー" => "rosemary.png",
+            "タイム" => "thyme.png",
+            "パセリ" => "parsley.png",
+            "ローレル" => "laurel.png",
+            "ナツメグ" => "nutmeg.png",
+            "クローブ" => "clove.png",
+            "山椒" => "sansho.png",
+            "カルダモン" => "cardamom.png",
+            "シナモン" => "cinnamon.png",
+            "バジル" => "basil.png",
+            "五香粉" => "gokohfun.png"
+          } %>
+          <% if spice_tags.present? %>
+            <% spice_tags.each do |cc| %>
+              <% spice_image = spice_image_map[cc.category.name] %>
+              <span class="inline-flex items-center gap-3 px-4 py-2 bg-emerald-100 text-emerald-800 rounded-full text-base">
+                <% if spice_image.present? %>
+                  <%= image_tag spice_image, alt: cc.category.name, class: "w-16 h-16 shrink-0 object-contain" %>
+                <% end %>
+                <span><%= cc.category.name %></span>
+              </span>
+            <% end %>
+          <% else %>
+            <span class="text-sm text-gray-500">未設定</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 
   <% repeat_params = params.to_unsafe_h.slice(
         "keyword", "category", "time_of_day", "season", "mood",
-        "genre", "cooking_style", "healthiness_type"
+        "genre", "cooking_style", "healthiness_type", "spice_names"
       ) %>
   <% only_category = repeat_params.except("category").values.all?(&:blank?) %>
 
