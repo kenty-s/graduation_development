@@ -122,3 +122,29 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  (() => {
+    const bindToggleRadios = () => {
+      document.querySelectorAll("label.cursor-pointer").forEach((label) => {
+        const input = label.querySelector('input[type="radio"]');
+        if (!input) return;
+        if (input.dataset.toggleBound === "true") return;
+
+        input.dataset.toggleBound = "true";
+        label.addEventListener("pointerdown", () => {
+          input.dataset.wasChecked = input.checked ? "true" : "false";
+        });
+        label.addEventListener("click", () => {
+          if (input.dataset.wasChecked === "true") {
+            input.checked = false;
+          }
+        });
+      });
+    };
+
+    document.addEventListener("turbo:load", bindToggleRadios);
+    document.addEventListener("DOMContentLoaded", bindToggleRadios);
+    bindToggleRadios();
+  })();
+</script>
