@@ -20,14 +20,11 @@ class Dish < ApplicationRecord
     scope = scope.where("genres @> ?",            [params[:genre]].to_json)              if params[:genre].present?
     scope = scope.where("cooking_styles @> ?",    [params[:cooking_style]].to_json)      if params[:cooking_style].present?
     scope = scope.where("healthiness_types @> ?", [params[:healthiness_type]].to_json)   if params[:healthiness_type].present?
-    if params[:spice_names].present?
-      spice_names = Array(params[:spice_names]).compact_blank
-      if spice_names.any?
-        spice_dish_ids = Dish.joins(category_contents: :category)
-                             .where(category_contents: { label: SPICE_LABEL }, categories: { name: spice_names })
-                             .select(:id)
-        scope = scope.where(id: spice_dish_ids)
-      end
+    if params[:spice_name].present?
+      spice_dish_ids = Dish.joins(category_contents: :category)
+                           .where(category_contents: { label: SPICE_LABEL }, categories: { name: params[:spice_name] })
+                           .select(:id)
+      scope = scope.where(id: spice_dish_ids)
     end
     scope
   end

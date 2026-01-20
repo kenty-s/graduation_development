@@ -57,7 +57,7 @@
       <div class="flex flex-wrap items-center gap-4">
         <span class="text-xl font-bold text-gray-900 min-w-[6rem]">スパイス</span>
         <div class="flex flex-wrap gap-2">
-          <% spice_names = @dish.spice_names_for_display(fallback_names: params[:spice_names]) %>
+          <% spice_names = @dish.spice_names_for_display(fallback_names: params[:spice_name]) %>
           <% spice_image_map = {
             "ブラックペッパー" => "black_pepper.png",
             "ガーリック" => "garlic.png",
@@ -100,7 +100,7 @@
 
   <% repeat_params = params.to_unsafe_h.slice(
         "keyword", "category", "time_of_day", "season", "mood",
-        "genre", "cooking_style", "healthiness_type", "spice_names"
+        "genre", "cooking_style", "healthiness_type", "spice_name"
       ) %>
   <% only_category = repeat_params.except("category").values.all?(&:blank?) %>
 
