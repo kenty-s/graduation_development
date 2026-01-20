@@ -2,7 +2,7 @@ require "cgi"
 require "stringio"
 require "zlib"
 
-SEED_VERSION = "2026-01-15-spice"
+SEED_VERSION = "2026-01-19-spice-variants"
 
 unless ActiveRecord::Base.connection.data_source_exists?("seed_runs")
   puts "seed_runs table is missing. Run db:migrate before db:seed."
@@ -289,7 +289,9 @@ foods_data = [
   {name: 'アイスクリーム', category: 'サッパリ', time_of_days: ['おやつ'], seasons: ['夏'], moods: ['リラックス'], genres: ['洋食'], cooking_styles: ['簡単', '冷たい'], healthiness_types: ['ヘルシー']},
   {name: 'フルーツサンド', category: 'サッパリ', time_of_days: ['おやつ'], seasons: ['春', '夏'], moods: ['リラックス'], genres: ['洋食'], cooking_styles: ['簡単', '冷たい'], healthiness_types: ['ヘルシー']},
   {name: 'プリン', category: 'サッパリ', time_of_days: ['おやつ'], seasons: ['春', '夏', '秋', '冬'], moods: ['リラックス'], genres: ['洋食'], cooking_styles: ['本格的', '冷たい'], healthiness_types: ['ヘルシー']},
-  {name: 'ゼリー', category: 'サッパリ', time_of_days: ['おやつ'], seasons: ['夏'], moods: ['リラックス'], genres: ['洋食'], cooking_styles: ['簡単', '冷たい'], healthiness_types: ['ヘルシー']}
+  {name: 'ゼリー', category: 'サッパリ', time_of_days: ['おやつ'], seasons: ['夏'], moods: ['リラックス'], genres: ['洋食'], cooking_styles: ['簡単', '冷たい'], healthiness_types: ['ヘルシー']},
+  {name: 'チャイ', category: 'サッパリ', time_of_days: ['朝', 'おやつ'], seasons: ['秋', '冬'], moods: ['リラックス'], genres: ['その他'], cooking_styles: ['簡単', '温かい'], healthiness_types: ['ヘルシー'], spices: ['クローブ', 'シナモン', 'カルダモン']},
+  {name: 'スパイスクッキー', category: 'サッパリ', time_of_days: ['おやつ'], seasons: ['秋', '冬'], moods: ['リラックス'], genres: ['洋食'], cooking_styles: ['簡単'], healthiness_types: ['ヘルシー'], spices: ['クローブ', 'シナモン', 'ナツメグ']}
 ]
 
 foods_data.each do |food_data|
