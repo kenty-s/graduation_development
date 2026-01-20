@@ -27,7 +27,8 @@
       <% time_of_day_tags = dish_tags.any? ? dish_tags.select { |cc| cc.label == "時間帯" }.map { |cc| cc.category.name } : Array(h.query_params["time_of_day"]) %>
       <% season_tags = dish_tags.any? ? dish_tags.select { |cc| cc.label == "季節" }.map { |cc| cc.category.name } : Array(h.query_params["season"]) %>
       <% genre_tags = dish_tags.any? ? dish_tags.select { |cc| cc.label == "ジャンル" }.map { |cc| cc.category.name } : Array(h.query_params["genre"]) %>
-      <% spice_tags = dish_tags.any? ? dish_tags.select { |cc| cc.label == "スパイス/ハーブ" }.map { |cc| cc.category.name } : Array(h.query_params["spice_names"]) %>
+      <% spice_param = h.query_params["spice_name"].presence || h.query_params["spice_names"] %>
+      <% spice_tags = dish_tags.any? ? dish_tags.select { |cc| cc.label == "スパイス/ハーブ" }.map { |cc| cc.category.name } : Array(spice_param) %>
       <% tag_orders = {
         "時間帯" => ["朝", "昼", "夜", "おやつ"],
         "季節" => ["春", "夏", "秋", "冬"],
