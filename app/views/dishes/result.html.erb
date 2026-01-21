@@ -100,7 +100,7 @@
 
   <% repeat_params = params.to_unsafe_h.slice(
         "keyword", "category", "time_of_day", "season", "mood",
-        "genre", "cooking_style", "healthiness_type", "spice_name"
+        "genre", "cooking_style", "healthiness_type", "spice_names"
       ) %>
   <% only_category = repeat_params.except("category").values.all?(&:blank?) %>
 

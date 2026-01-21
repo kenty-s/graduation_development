@@ -2,7 +2,7 @@ require "cgi"
 require "stringio"
 require "zlib"
 
-SEED_VERSION = "2026-01-19-spice-variants"
+SEED_VERSION = "2026-01-21-salad-menus"
 
 unless ActiveRecord::Base.connection.data_source_exists?("seed_runs")
   puts "seed_runs table is missing. Run db:migrate before db:seed."
@@ -263,6 +263,10 @@ foods_data = [
   {name: 'お茶漬け', category: 'サッパリ', time_of_days: ['夜'], seasons: ['春', '秋', '冬'], moods: ['疲れた', 'リラックス'], genres: ['和食'], cooking_styles: ['簡単', '温かい'], healthiness_types: ['ヘルシー']},
   {name: 'サラダ', category: 'サッパリ', time_of_days: ['昼'], seasons: ['春', '夏'], moods: ['集中したい'], genres: ['洋食'], cooking_styles: ['簡単'], healthiness_types: ['ヘルシー', '野菜多め']},
   {name: 'シーザーサラダ', category: 'サッパリ', time_of_days: ['昼'], seasons: ['春', '夏'], moods: ['集中したい'], genres: ['洋食'], cooking_styles: ['簡単'], healthiness_types: ['ヘルシー', '野菜多め']},
+  {name: 'コブサラダ', category: 'サッパリ', time_of_days: ['昼'], seasons: ['春', '夏', '秋'], moods: ['元気'], genres: ['洋食'], cooking_styles: ['簡単'], healthiness_types: ['ヘルシー', '野菜多め', 'タンパク質重視']},
+  {name: '豆腐サラダ', category: 'サッパリ', time_of_days: ['昼', '夜'], seasons: ['春', '夏', '秋'], moods: ['リラックス'], genres: ['和食'], cooking_styles: ['簡単'], healthiness_types: ['ヘルシー', 'タンパク質重視']},
+  {name: '海藻サラダ', category: 'サッパリ', time_of_days: ['昼', '夜'], seasons: ['春', '夏'], moods: ['リラックス'], genres: ['和食'], cooking_styles: ['簡単', '冷たい'], healthiness_types: ['ヘルシー', '野菜多め']},
+  {name: 'ポテトサラダ', category: 'サッパリ', time_of_days: ['昼', '夜'], seasons: ['春', '夏', '秋'], moods: ['リラックス'], genres: ['洋食'], cooking_styles: ['簡単'], healthiness_types: ['こってり']},
   {name: '冷奴', category: 'サッパリ', time_of_days: ['夜'], seasons: ['夏'], moods: ['リラックス'], genres: ['和食'], cooking_styles: ['簡単', '冷たい'], healthiness_types: ['ヘルシー', 'タンパク質重視']},
   {name: '湯豆腐', category: 'サッパリ', time_of_days: ['夜'], seasons: ['秋', '冬'], moods: ['リラックス'], genres: ['和食'], cooking_styles: ['簡単', '温かい'], healthiness_types: ['ヘルシー', 'タンパク質重視']},
   {name: '野菜炒め', category: 'サッパリ', time_of_days: ['夜'], seasons: ['春', '夏', '秋'], moods: ['集中したい'], genres: ['中華'], cooking_styles: ['簡単', '温かい'], healthiness_types: ['ヘルシー', '野菜多め']},
