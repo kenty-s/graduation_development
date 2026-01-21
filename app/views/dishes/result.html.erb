@@ -83,7 +83,7 @@
           <% if spice_names.present? %>
             <% spice_names.each do |spice_name| %>
               <% spice_image = spice_image_map[spice_name] %>
-              <span class="inline-flex items-center gap-3 px-4 py-2 bg-emerald-100 text-emerald-800 rounded-full text-base">
+              <span class="inline-flex items-center gap-3 px-4 py-2 text-base">
                 <% if spice_image.present? %>
                   <%= image_tag spice_image, alt: spice_name, class: "w-16 h-16 shrink-0 object-contain" %>
                 <% end %>
@@ -103,9 +103,12 @@
         "genre", "cooking_style", "healthiness_type", "spice_names"
       ) %>
   <% only_category = repeat_params.except("category").values.all?(&:blank?) %>
+  <% share_text = "今日のキブンは「#{@dish.name}」！ #キブンメシ" %>
+  <% share_url = "https://kibunmeshi.onrender.com/" %>
+  <% x_share_url = "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode(share_text)}&url=#{ERB::Util.url_encode(share_url)}" %>
 
   <!-- ボタンエリア -->
-  <div class="flex justify-center gap-4 mb-12">
+  <div class="flex flex-wrap justify-center gap-4 mb-12">
     <%= link_to "← 最初から選び直す", root_path,
         class: "px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg border border-gray-300 transition-all duration-200" %>
 
@@ -122,5 +125,10 @@
           params: repeat_params,
           class: "px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg border border-gray-300 transition-all duration-200" %>
     <% end %>
+
+    <%= link_to "Xで投稿", x_share_url,
+        target: "_blank",
+        rel: "noopener noreferrer",
+        class: "px-6 py-3 bg-black text-white rounded-lg border border-black hover:bg-gray-900 transition-all duration-200" %>
   </div>
 </div>
