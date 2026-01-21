@@ -39,3 +39,8 @@ button[formmethod="delete"] {
   border: none;
   cursor: pointer;
 }
+
+html,
+body {
+  font-family: "MotoyaMaAporo", sans-serif;
+}

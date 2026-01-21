@@ -1,7 +1,7 @@
-<div class="w-full max-w-6xl mx-auto px-4 py-8">
+<div class="w-full max-w-6xl mx-auto px-4 pt-2 pb-6">
   <!-- ヘッダー部分（1列） -->
-  <div class="text-center mb-12">
-    <p class="text-gray-600 mb-2">あなたの今食べたい「キブン」の「メシ」は...</p>
+  <div class="text-center mb-6">
+    <p class="text-gray-800 mb-5">あなたの今のキブンは...</p>
     <p class="text-gray-400 text-sm mb-6"><%= Time.current.strftime("%m月%d日 %H:%M") %></p>
 
     <h1 class="text-4xl font-bold mb-4"><%= @dish.name %></h1>
@@ -15,7 +15,7 @@
   </div>
 
   <!-- カード部分（1列レイアウト） -->
-  <div class="space-y-6 mb-12">
+  <div class="space-y-6 mb-8">
     <!-- 時間帯 -->
     <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
       <div class="flex flex-wrap items-center gap-4">
@@ -57,7 +57,7 @@
       <div class="flex flex-wrap items-center gap-4">
         <span class="text-xl font-bold text-gray-900 min-w-[6rem]">スパイス</span>
         <div class="flex flex-wrap gap-2">
-          <% spice_names = @dish.spice_names_for_display(fallback_names: params[:spice_name]) %>
+          <% spice_names = @dish.spice_names_for_display(fallback_names: params[:spice_name]).first(4) %>
           <% spice_image_map = {
             "ブラックペッパー" => "black_pepper.png",
             "ガーリック" => "garlic.png",
@@ -83,7 +83,7 @@
           <% if spice_names.present? %>
             <% spice_names.each do |spice_name| %>
               <% spice_image = spice_image_map[spice_name] %>
-              <span class="inline-flex items-center gap-3 px-4 py-2 bg-emerald-100 text-emerald-800 rounded-full text-base">
+              <span class="inline-flex items-center gap-3 px-4 py-2 text-base">
                 <% if spice_image.present? %>
                   <%= image_tag spice_image, alt: spice_name, class: "w-16 h-16 shrink-0 object-contain" %>
                 <% end %>
@@ -103,11 +103,15 @@
         "genre", "cooking_style", "healthiness_type", "spice_names"
       ) %>
   <% only_category = repeat_params.except("category").values.all?(&:blank?) %>
+  <% share_text = "今日のキブンは「#{@dish.name}」！ #キブンメシ" %>
+  <% share_url = "https://kibunmeshi.onrender.com/" %>
+  <% x_share_url = "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode(share_text)}&url=#{ERB::Util.url_encode(share_url)}" %>
 
   <!-- ボタンエリア -->
-  <div class="flex justify-center gap-4 mb-12">
+  <div class="flex flex-wrap justify-center gap-4 mb-12">
     <%= link_to "← 最初から選び直す", root_path,
         class: "px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg border border-gray-300 transition-all duration-200" %>
+
 
     <% if only_category %>
       <%= button_to "同じ条件でもう一度",
@@ -122,5 +126,10 @@
           params: repeat_params,
           class: "px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg border border-gray-300 transition-all duration-200" %>
     <% end %>
+
+    <%= link_to "Xで投稿", x_share_url,
+        target: "_blank",
+        rel: "noopener noreferrer",
+        class: "px-6 py-3 bg-black text-white rounded-lg border border-black hover:bg-gray-900 transition-all duration-200" %>
   </div>
 </div>
