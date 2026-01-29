@@ -16,8 +16,8 @@ RUN gem install bundler && bundle install --jobs 4 --retry 3
 COPY . .
 
 # assets
-RUN bundle exec rails assets:precompile
 RUN bundle exec rails tailwindcss:build
+RUN bundle exec rails assets:precompile
 
 EXPOSE 3000
 
