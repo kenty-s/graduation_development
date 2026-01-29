@@ -1,11 +1,11 @@
-<header class="sticky top-0 z-50 bg-white shadow-sm">
+<header class="sticky top-0 z-50 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-white shadow-md">
   <nav class="container mx-auto px-4">
     <div class="flex items-center justify-between h-16">
       <!-- 左側：ロゴ＆サービス名 -->
-      <%= link_to '/', class: 'flex items-center gap-3 hover:opacity-80 transition-opacity' do %>
-        <%= image_tag 'favicon.png', class: 'w-10 h-10 object-contain' %>
+      <%= link_to '/', class: 'flex items-center gap-3 hover:opacity-90 transition-opacity' do %>
+        <%= image_tag 'favicon.png', class: 'w-10 h-10 object-contain drop-shadow-sm' %>
         <div class="flex flex-col leading-tight">
-          <span class="font-bold text-base text-gray-800">キブンメシ</span>
+          <span class="font-bold text-base text-white">キブンメシ</span>
         </div>
       <% end %>
 
@@ -13,22 +13,22 @@
       <div class="flex items-center gap-3">
         <% if user_signed_in? %>
           <!-- ログイン済み -->
-          <span class="text-gray-700">
+          <span class="text-white/90">
             <%= current_user.name %>さん
           </span>
           <% if user_signed_in? %>
-            <%= link_to "検索履歴", search_histories_path, class: "px-4 py-2 text-sm font-medium text-white bg-rose-500 rounded-md hover:bg-gray-600 transition-colors" %>
+            <%= link_to "検索履歴", search_histories_path, class: "px-4 py-2 text-sm font-medium text-orange-700 bg-white/90 rounded-md hover:bg-white transition-colors" %>
           <% end %>
           <%= button_to "ログアウト", destroy_user_session_path, 
               method: :delete, 
-              class: "px-4 py-2 text-sm font-medium text-white bg-gray-500 rounded-md hover:bg-gray-600 transition-colors",
+              class: "px-4 py-2 text-sm font-medium text-white bg-orange-700/90 rounded-md hover:bg-orange-700 transition-colors",
               form: { class: "inline" } %>
         <% else %>
           <!-- 未ログイン -->
           <%= link_to "ログイン", new_user_session_path, 
-              class: "px-4 py-2 text-sm font-medium text-white bg-green-500 rounded-md hover:bg-blue-600 transition-colors" %>
+              class: "px-4 py-2 text-sm font-medium text-orange-700 bg-white/90 rounded-md hover:bg-white transition-colors" %>
           <%= link_to "新規登録", new_user_registration_path, 
-              class: "px-6 py-2 text-sm font-bold text-white bg-orange-500 rounded-md hover:bg-orange-600 transition-colors" %>
+              class: "px-6 py-2 text-sm font-bold text-white bg-orange-700 rounded-md hover:bg-orange-800 transition-colors" %>
         <% end %>
       </div>
     </div>

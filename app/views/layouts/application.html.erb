@@ -12,7 +12,7 @@
       if content_for?(:og_image)
         yield(:og_image)
       else
-        "#{request.base_url}/ogp.png"
+        image_url("ogp.png")
       end
     %>
 
