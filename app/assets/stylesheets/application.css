@@ -44,3 +44,7 @@ html,
 body {
   font-family: "MotoyaMaAporo", sans-serif;
 }
+
+.app-header {
+  background-color: #fb923c;
+}
