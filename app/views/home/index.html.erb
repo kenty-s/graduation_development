@@ -1,10 +1,10 @@
 <!-- ホーム画面 -->
-<section class="relative min-h-[calc(100vh-4rem)] overflow-hidden bg-[#fff6ee]">
+<section class="relative min-h-[calc(100vh-4rem)] overflow-hidden bg-[#f8efe4]">
   <!-- Background shapes -->
-  <div class="pointer-events-none absolute -top-32 right-[-12%] h-[70vh] w-[80vw] max-w-[900px] rotate-[12deg] rounded-[5rem] bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 shadow-[0_30px_80px_rgba(255,122,0,0.35)]"></div>
-  <div class="pointer-events-none absolute -bottom-28 left-[-18%] h-[60vh] w-[75vw] max-w-[900px] -rotate-[12deg] rounded-[5rem] bg-gradient-to-br from-orange-300 to-orange-500 shadow-[0_30px_80px_rgba(255,122,0,0.25)]"></div>
-  <div class="pointer-events-none absolute top-24 left-[10%] h-64 w-64 rounded-full bg-orange-100/80 blur-[1px]"></div>
-  <div class="pointer-events-none absolute bottom-24 right-[12%] h-48 w-48 rounded-full bg-orange-200/70"></div>
+  <div class="pointer-events-none absolute -top-32 right-[-12%] h-[70vh] w-[80vw] max-w-[900px] rotate-[12deg] rounded-[5rem] bg-gradient-to-br from-orange-400 via-orange-400 to-orange-300 shadow-[0_30px_80px_rgba(214,117,60,0.22)]"></div>
+  <div class="pointer-events-none absolute -bottom-28 left-[-18%] h-[60vh] w-[75vw] max-w-[900px] -rotate-[12deg] rounded-[5rem] bg-gradient-to-br from-orange-350 via-orange-450 to-orange-400 shadow-[0_30px_80px_rgba(214,117,60,0.18)]"></div>
+  <div class="pointer-events-none absolute top-24 left-[10%] h-64 w-64 rounded-full bg-orange-100/70 blur-[1px]"></div>
+  <div class="pointer-events-none absolute bottom-24 right-[12%] h-48 w-48 rounded-full bg-orange-200/60"></div>
 
   <div class="relative z-10 w-full max-w-6xl mx-auto px-4 pt-12 pb-16 md:pt-16">
   <!-- タイトルセクション -->
@@ -12,28 +12,29 @@
     <h1 class="text-4xl font-bold mb-4">今日は何を食べたいですか？</h1>
     <p class="text-lg text-gray-600">
       「何食べたい？」と聞かれても答えられない…<br>
-      そんな時は、あなたの気分を選ぶだけ。最短5秒で「食べたい」にたどり着けます。
+      そんな時は、あなたの「キブン」 を選ぶだけ。<br>
+      最短1秒で食べたい「キブンメシ」にたどり着けます。
     </p>
   </div>
 
   <!-- 基本選択 -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
   <!-- ガッツリ -->
-      <div class="bg-orange-50 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-orange-200 p-8">
+      <div class="bg-red-50 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-red-200 p-8">
         <div class="flex justify-center mb-4">
           <%= image_tag 'gattsuri.png', class: 'w-16 h-16 object-contain' %>
         </div>
         <h3 class="text-2xl font-bold mb-2 text-center text-gray-800">ガッツリ</h3>
         <p class="text-gray-600 text-sm text-center mb-6">お腹いっぱい食べたい！<br>ボリューム満点の料理</p>
         <div class="flex justify-center gap-2 mb-8 flex-wrap">
-          <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm font-medium">とんかつ</span>
-          <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm font-medium">ステーキ</span>
-          <span class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm font-medium">カレー</span>
+          <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">とんかつ</span>
+          <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">ステーキ</span>
+          <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">カレー</span>
         </div>
         <%= form_with url: result_path, method: :get, local: true, class: "w-full" do |form| %>
           <%= form.hidden_field :category, value: "ガッツリ" %>
           <%= form.submit "この気分ですぐ検索",
-              class: "block w-full py-2.5 px-4 text-sm text-orange-700 font-bold bg-orange-100 hover:bg-orange-200 rounded-lg text-center border border-orange-300 cursor-pointer transition-all duration-200" %>
+              class: "block w-full py-2.5 px-4 text-sm text-red-800 font-bold bg-red-100 hover:bg-red-200 rounded-lg text-center border border-red-300 cursor-pointer transition-all duration-200" %>
         <% end %>
       </div>
 
@@ -45,14 +46,14 @@
         <h3 class="text-2xl font-bold mb-2 text-center text-gray-800">サッパリ</h3>
         <p class="text-gray-600 text-sm text-center mb-6">軽やかに食べたい！<br>あっさりとした料理</p>
         <div class="flex justify-center gap-2 mb-8 flex-wrap">
-          <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">そば</span>
-          <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">サラダ</span>
-          <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">スープ</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">そば</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">サラダ</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">スープ</span>
         </div>
         <%= form_with url: result_path, method: :get, local: true, class: "w-full" do |form| %>
           <%= form.hidden_field :category, value: "サッパリ" %>
           <%= form.submit "この気分ですぐ検索",
-              class: "block w-full py-2.5 px-4 text-sm text-green-700 font-bold bg-green-100 hover:bg-green-200 rounded-lg text-center border border-green-300 cursor-pointer transition-all duration-200" %>
+              class: "block w-full py-2.5 px-4 text-sm text-green-800 font-bold bg-green-100 hover:bg-green-200 rounded-lg text-center border border-green-300 cursor-pointer transition-all duration-200" %>
         <% end %>
       </div>
     </div>
@@ -61,7 +62,7 @@
   <div class="mt-12 mb-12 text-center space-y-3">
     <p class="text-gray-600">もっと細かく条件を指定したい方は</p>
     <button type="button"
-      class="inline-flex items-center gap-2 px-6 py-3 bg-black text-white rounded-full shadow-md hover:bg-gray-800 transition"
+      class="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 text-white rounded-full shadow-md hover:bg-orange-800 transition"
       onclick="const p=document.getElementById('advanced-search-panel'); p.classList.toggle('hidden'); p.scrollIntoView({behavior:'smooth'});">
       <span class="text-lg">⚙ 詳細条件を設定する</span> 
     </button>
